@@ -12,9 +12,9 @@ public class Spider : Enemy
     }
 
     // init ¼¼ÆÃ
-    public override void Initialize(int Hp, int ATK, int AttakRate, int AttackRange)
+    public override void Initialize(EnemySpawner Spawner, int Hp, int ATK, int AttakRate, int AttackRange)
     {
-        base.Initialize(Hp, ATK, AttakRate, AttackRange);
+        base.Initialize(Spawner, Hp, ATK, AttakRate, AttackRange);
     }
 
 
@@ -28,5 +28,13 @@ public class Spider : Enemy
     public override void OnAttack1Trigger()
     {
         base.OnAttack1Trigger();
+    }
+
+    private void OnDestroy()
+    {
+        Spawner.DeadEnemy();
+        //if (Player.Instance.Target == this)
+        //    Player.Instance.KillTarget();
+
     }
 }

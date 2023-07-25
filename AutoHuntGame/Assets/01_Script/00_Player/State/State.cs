@@ -15,7 +15,7 @@ public class State
 
     public virtual void Enter()
     {
-        Debug.Log("enter state: " + this.ToString());
+        Debug.Log($"{charBase.gameObject.name} enter state: {this}");
     }
 
     public virtual void Update()
@@ -25,6 +25,16 @@ public class State
 
     public virtual void Exit()
     {
-        Debug.Log("exit state: " + this.ToString());
+        Debug.Log($"{charBase.gameObject.name} exit state: {this}");
+    }
+
+    protected bool DeadCheck()
+    {
+        if (charBase.GetHP <= 0 && this.charBase.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            stateMachine.ChangeState(charBase.Dead);
+            return true;
+        }
+        return false;
     }
 }

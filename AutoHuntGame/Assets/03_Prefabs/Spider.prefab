@@ -1456,7 +1456,7 @@ GameObject:
   - component: {fileID: 439779067623623452}
   - component: {fileID: 8893354711587826730}
   - component: {fileID: 8039690532369787527}
-  - component: {fileID: 4369612804414066319}
+  - component: {fileID: 5123328798095537110}
   m_Layer: 6
   m_Name: Spider
   m_TagString: Untagged
@@ -1529,7 +1529,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &8039690532369787527
 MonoBehaviour:
@@ -1544,13 +1544,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
+  animator: {fileID: 0}
   HP: 0
   Atk: 0
   AttackRate: 0
   AttackRange: 0
+  SkillRange: 0
+  MaxEXP: 0
+  EXP: 0
+  AttackEnd: 0
   Target: {fileID: 0}
---- !u!65 &4369612804414066319
-BoxCollider:
+  curAttackTimer: 0
+--- !u!135 &5123328798095537110
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1560,7 +1566,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &439779067630893278
 GameObject:

@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638257840811367905
+      ticks: 638258797023560885
     m_Hash: 1719789460
   m_LockFileStatus:
     m_FilePath: D:/Github/CookAppsTest/AutoHuntGame/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638257841219687233
+      ticks: 638258797023820199
     m_Hash: 1755400957
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

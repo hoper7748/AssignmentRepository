@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -46,7 +41,12 @@ public class EnemySpawner : MonoBehaviour
     {
         curSpawn++;
         GameObject obj = Instantiate(EnemyPrefab, SpawnPoint(), Quaternion.identity);
-        obj.GetComponent<Enemy>().Initialize(EHP, EATK, EAttackRate, EAttackRange);
+        obj.GetComponent<Enemy>().Initialize(this, EHP, EATK, EAttackRate, EAttackRange);
+    }
+
+    public void DeadEnemy()
+    {
+        curSpawn--;
     }
 
     // Update is called once per frame
