@@ -22,6 +22,9 @@ public class Spider : Enemy
     void FixedUpdate()
     {
         //Debug.Log(SM.CurrentState.ToString());
+        if (!isAttack() && AttackEnd)
+            AttackTimer();
+
         SM.CurrentState.Update();
     }
 

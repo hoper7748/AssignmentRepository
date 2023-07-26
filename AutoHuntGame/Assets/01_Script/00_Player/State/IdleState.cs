@@ -23,7 +23,7 @@ public class IdleState : State
 
     private bool RangeCheck(Vector3 A, Vector3 B)
     {
-        return Vector3.Distance(charBase.transform.position, A) > Vector3.Distance(charBase.transform.position, B);
+        return Vector3.Distance(charBase.transform.position, A) < Vector3.Distance(charBase.transform.position, B);
 
     }
 
@@ -52,9 +52,8 @@ public class IdleState : State
                             charBase.Target = cols[i].gameObject;
                         else
                         {
-                            charBase.Target = RangeCheck(charBase.Target.transform.position, cols[i].transform.position) ? cols[i].gameObject : charBase.Target;
+                            charBase.Target = RangeCheck(charBase.Target.transform.position, cols[i].transform.position) ? charBase.Target: cols[i].gameObject;
                         }
-                        break;
                     }
                 }
             }
@@ -83,13 +82,13 @@ public class IdleState : State
         base.Update();
         if (DeadCheck())
             return;
+        Search();
         // Å½»ö 
-        if(timer < waitTime)
+        if (timer < waitTime)
         {
             timer += Time.deltaTime;
             return;
         }
-        Search();
         StateChange();
     }
 

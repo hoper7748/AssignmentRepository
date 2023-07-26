@@ -1100,7 +1100,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &601192463
 SphereCollider:
@@ -1129,7 +1129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 0}
   animator: {fileID: 0}
-  Level: 0
   HP: 100
   Atk: 10
   AttackRate: 1
@@ -1138,7 +1137,6 @@ MonoBehaviour:
   EAtkType: 000000000100000002000000
   curEAtk: 0
   MaxEXP: 50
-  EXP: 0
   AttackEnd: 0
   isDead: 0
   Target: {fileID: 0}

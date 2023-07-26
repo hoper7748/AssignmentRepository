@@ -49,8 +49,7 @@ public class Enemy : Character
 
     private void Update()
     {
-        if (!isAttack() && AttackEnd)
-            AttackTimer();
+
     }
 
 }

@@ -12,7 +12,6 @@ public class DeadState : State
     {
         base.Enter();
         charBase.isDead = true;
-        charBase.gameObject.layer = LayerMask.NameToLayer("DeadCharacter");
         charBase.Target.GetComponent<Character>().KillTarget();
         charBase.animator.SetTrigger("isDead");
         charBase.stateName = "Dead";

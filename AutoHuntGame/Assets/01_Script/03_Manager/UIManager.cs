@@ -10,15 +10,16 @@ public class UIManager : MonoBehaviour
     [Header("Lv Inspector")]
     public TextMeshProUGUI TmpText;
     public Image LvGage;
+    public Image HpGage;
     // Start is called before the first frame update
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        UpdateLv();
+        UpdateLvGage();
         GetExp();
     }
-    public void UpdateLv()
+    public void UpdateLvGage()
     {
         TmpText.text = Player.Instance.GetLv.ToString();
     }
@@ -26,7 +27,11 @@ public class UIManager : MonoBehaviour
     public void GetExp()
     {
         LvGage.fillAmount = Player.Instance.GetEXP / Player.Instance.MaxEXP;
-
+    }
+    
+    public void UpdateHpGage()
+    {
+        HpGage.fillAmount = ((float)Player.Instance.GetHP / (float)Player.Instance.HP);
     }
 
 }

@@ -30,9 +30,11 @@ public class AttackState : State
     public override void Update()       
     {
         base.Update();
+        bool bAttackCheck = (!charBase.isAttack() && charBase.AttackEnd);
+        bool bTarget = charBase.Target == null;
         if (DeadCheck())
             return;
-        if (!charBase.isAttack() && charBase.AttackEnd)
+        if (bAttackCheck || bTarget)
             stateMachine.ChangeState(charBase.Idle);
     }
 

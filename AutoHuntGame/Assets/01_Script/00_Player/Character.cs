@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -82,10 +83,11 @@ public class Character : MonoBehaviour
         {
             Level++;
             HP += 10;
-            Atk += 5;
+            //Atk += 5;
             curHp = HP;   // 체력 재생
             EXP = 0;
-            UIManager.Instance.UpdateLv();
+            UIManager.Instance.UpdateLvGage();
+            UIManager.Instance.UpdateHpGage();
         }
         UIManager.Instance.GetExp();
     }
@@ -101,7 +103,7 @@ public class Character : MonoBehaviour
             this.curHp += Atk;  // 회복
             if (curHp > HP)
                 curHp = HP;
-            Debug.Log($"{this.gameObject.name} Healing: {curHp - Atk} -> {curHp}");
+            //Debug.Log($"{this.gameObject.name} Healing: {curHp - Atk} -> {curHp}");
         }
         curAttackTimer = 0;
     }
@@ -109,6 +111,17 @@ public class Character : MonoBehaviour
     public void GetDamaged(int damage)
     {
         curHp -= damage;
+        if (GetHP <= 0 && this.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            Debug.Log("Kill");
+            //Target.GetComponent<Character>().KillTarget();
+            //gameObject.layer = LayerMask.NameToLayer("DeadCharacter");
+            SM.ChangeState(Dead);
+        }
+        else if (this.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            UIManager.Instance.UpdateHpGage();
+        }
     }
 
     public void InitializeEAtkType()
@@ -146,6 +159,8 @@ public class Character : MonoBehaviour
     public void AttackTimer()
     {
         curAttackTimer += Time.deltaTime;
+        //if(gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //    Debug.Log($"{curAttackTimer}");
     }
 
     public void EAtkUpdate()

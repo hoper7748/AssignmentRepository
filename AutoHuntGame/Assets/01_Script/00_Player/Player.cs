@@ -40,7 +40,7 @@ public class Player : Character
         }
         Level = 1;
         this.curHp = HP;
-        UIManager.Instance.UpdateLv();
+        UIManager.Instance.UpdateLvGage();
         AttackEnd = true;
     }
 
@@ -63,16 +63,10 @@ public class Player : Character
         {
             case ATKTYPE.NORMAL_ATK:
             case ATKTYPE.SKILL2:
-                //Debug.Log($"Heal Attack? {curEAtk}");
                 base.OnAttack1Trigger();
                 break;
             case ATKTYPE.SKILL1:
-                //Debug.Log($"Skill");
-                //AttackEnd = true;
                 break;
-                //Debug.Log($"Special Attack");
-                //AttackEnd = true;
-                //break;
         }
     }
 }

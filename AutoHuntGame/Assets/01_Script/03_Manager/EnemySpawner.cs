@@ -14,16 +14,18 @@ public class EnemySpawner : MonoBehaviour
     public int EAttackRange;
 
     // 플레이어 중심 생성 범위
-    public float CraeteRange = 10f;
+    public float CreateMinRange;
+    public float CraeteMaxRange;
 
     public GameObject EnemyPrefab;
 
     private float timer = 0;
-
+    private float totalSpawn = 0;
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
+        totalSpawn = 0;
     }
 
     private Vector3 SpawnPoint()
@@ -32,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 getPoint = Random.onUnitSphere;
         getPoint.y = PlayerPoint.y; 
 
-        float r = Random.Range(5f, CraeteRange);
+        float r = Random.Range(CreateMinRange, CraeteMaxRange);
 
         return getPoint * r + PlayerPoint;
     }
@@ -42,6 +44,8 @@ public class EnemySpawner : MonoBehaviour
         curSpawn++;
         GameObject obj = Instantiate(EnemyPrefab, SpawnPoint(), Quaternion.identity);
         obj.GetComponent<Enemy>().Initialize(this, EHP, EATK, EAttackRate, EAttackRange);
+        obj.name += totalSpawn.ToString();
+        totalSpawn++;
     }
 
     public void DeadEnemy()

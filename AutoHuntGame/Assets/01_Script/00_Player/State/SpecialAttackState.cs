@@ -10,7 +10,7 @@ public class SpecialAttackState : AttackState
     public override void Enter()
     {
         //base.Enter();
-        Debug.Log($"Special Attack");
+        //Debug.Log($"Special Attack");
 
         charBase.stateName = "Special";
         charBase.animator.SetTrigger("isAttack");

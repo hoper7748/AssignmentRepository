@@ -18,7 +18,7 @@ public class SkillState : AttackState
         timer = 0;
         bSkill = false;
 
-        Debug.Log($"Skill");
+        //Debug.Log($"Skill");
         charBase.stateName = "Skill";
         Rotate();
         if (DeadCheck() || charBase.Target == null)
@@ -61,6 +61,8 @@ public class SkillState : AttackState
 
     private void StateChange()
     {
+        bool bAttackCheck = (!charBase.isAttack() && charBase.AttackEnd);
+        bool bTarget = charBase.Target == null;
         if (timer < waitTime)
         {
             timer += Time.deltaTime;
@@ -68,15 +70,17 @@ public class SkillState : AttackState
         }
         else
         {
+            Debug.Log($"bAttackCheck = {bAttackCheck}");
+            Debug.Log($"bTarget = {bTarget}");
             charBase.AttackEnd = true;
             if (DeadCheck())
             {
-                Debug.Log($"DeadCheck Hit");
+                //Debug.Log($"DeadCheck Hit");
                 return;
             }
-            if (!charBase.isAttack() && charBase.AttackEnd)
+            if (bAttackCheck || bTarget)
             {
-                Debug.Log($"StateChange Hit");
+                //Debug.Log($"StateChange Hit");
                 stateMachine.ChangeState(charBase.Idle);
             }
         }
@@ -84,6 +88,7 @@ public class SkillState : AttackState
 
     public override void Update()
     {
+
         useSkill();
         StateChange();
     }
