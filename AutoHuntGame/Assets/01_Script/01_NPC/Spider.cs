@@ -21,11 +21,14 @@ public class Spider : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log(SM.CurrentState.ToString());
-        if (!isAttack() && AttackEnd)
-            AttackTimer();
+        if (GameManager.Instance.isGame)
+        {
+            //Debug.Log(SM.CurrentState.ToString());
+            if (!isAttack() && AttackEnd)
+                AttackTimer();
 
-        SM.CurrentState.Update();
+            SM.CurrentState.Update();
+        }
     }
 
     public override void OnAttack1Trigger()

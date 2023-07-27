@@ -52,9 +52,7 @@ public class EnemySpawner : MonoBehaviour
     {
         curSpawn--;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void SpawnTimers()
     {
         if (curSpawn < MaxSpawn)
         {
@@ -64,6 +62,15 @@ public class EnemySpawner : MonoBehaviour
                 Spawn();
                 timer = 0;
             }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.Instance.isGame)
+        {
+            SpawnTimers();
         }
     }
 }

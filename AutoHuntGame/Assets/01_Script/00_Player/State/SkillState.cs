@@ -70,8 +70,8 @@ public class SkillState : AttackState
         }
         else
         {
-            Debug.Log($"bAttackCheck = {bAttackCheck}");
-            Debug.Log($"bTarget = {bTarget}");
+            //Debug.Log($"bAttackCheck = {bAttackCheck}");
+            //Debug.Log($"bTarget = {bTarget}");
             charBase.AttackEnd = true;
             if (DeadCheck())
             {

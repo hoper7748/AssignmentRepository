@@ -21,6 +21,12 @@ public class Player : Character
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+
         SM = new StateMachine();
 
         Idle = new IdleState(SM, this);
@@ -39,9 +45,15 @@ public class Player : Character
             rigidbody = GetComponent<Rigidbody>();
         }
         Level = 1;
+        this.HP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerHp() : this.HP;
         this.curHp = HP;
-        UIManager.Instance.UpdateLvGage();
+        this.Level = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerLv() : this.Level;
+        this.EXP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerEXP() : this.EXP;
         AttackEnd = true;
+
+        UIManager.Instance.UpdateLvGage();
+        UIManager.Instance.GetExp();
+        UIManager.Instance.UpdateHpGage();
     }
 
     public override void KillTarget()
@@ -52,9 +64,12 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        if (!isAttack() && AttackEnd)
-            AttackTimer();
-        SM.CurrentState.Update();
+        if (GameManager.Instance.isGame)
+        {
+            if (!isAttack() && AttackEnd)
+                AttackTimer();
+            SM.CurrentState.Update();
+        }
     }
 
     public override void OnAttack1Trigger()

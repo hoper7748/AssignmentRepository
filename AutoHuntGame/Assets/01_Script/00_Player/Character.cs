@@ -74,6 +74,12 @@ public class Character : MonoBehaviour
         curAttackTimer = 0;
     }
 
+    public void LoadInfo(int lv, int hp)
+    {
+        this.Level = lv;
+        this.HP = hp;    
+    }
+
     public virtual void KillTarget()
     {
         // 경험치를 얻고 타겟을 초기화 한다.
@@ -113,7 +119,7 @@ public class Character : MonoBehaviour
         curHp -= damage;
         if (GetHP <= 0 && this.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("Kill");
+            //Debug.Log("Kill");
             //Target.GetComponent<Character>().KillTarget();
             //gameObject.layer = LayerMask.NameToLayer("DeadCharacter");
             SM.ChangeState(Dead);
