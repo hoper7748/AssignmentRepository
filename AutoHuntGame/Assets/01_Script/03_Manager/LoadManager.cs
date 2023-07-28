@@ -32,10 +32,11 @@ public class LoadManager : MonoBehaviour
     }
 
     public bool isPlayerData()
-    {
+    {   
         try
         {
-            if (PlayerPrefs.HasKey("Hp") && PlayerPrefs.HasKey("Lv") && PlayerPrefs.HasKey("Exp"))
+            bool isHasKey = PlayerPrefs.HasKey("Hp") && PlayerPrefs.HasKey("Lv") && PlayerPrefs.HasKey("Exp");
+            if (isHasKey)
             {
                 GameManager.Instance.OnLoad();
                 return true;

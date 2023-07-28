@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
             instance = this;
         else if (instance != null)
             Destroy(this.gameObject);
+        TitleUI.SetActive(false);
         SettingPanel.SetActive(false);
-        PlayerInfoUI.SetActive(false);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -79,7 +79,6 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
         TitleUI.SetActive(true);
         GameManager.Instance.GetLoad = false;
-        HidePlayerInfoUI();
     }
 
     public void ExitBtn()
@@ -99,15 +98,14 @@ public class UIManager : MonoBehaviour
         SettingPanel.SetActive(false);
     }
 
-    public void HidePlayerInfoUI()
-    {
-        PlayerInfoUI.SetActive(false);
-    }
+    //public void HidePlayerInfoUI()
+    //{
+    //    PlayerInfoUI.SetActive(false);
+    //}
 
     public void ShowPlayerInfoUI()
     {
         PlayerInfoUI.SetActive(true);
-        //GameManager.Instance.GetLoad = false;
     }
 
     public void UpdateLvGage()

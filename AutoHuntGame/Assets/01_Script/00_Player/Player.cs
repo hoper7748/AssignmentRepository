@@ -24,19 +24,22 @@ public class Player : Character
         Initialize();
     }
 
+    private void LoadData()
+    {
+        this.HP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerHp() : this.HP;
+        this.Level = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerLv() : this.Level;
+        this.EXP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerEXP() : this.EXP;
+    }
+
     public void Initialize()
     {
 
         SM = new StateMachine();
-
         Idle = new IdleState(SM, this);
-        //Attacks = new AttackState[EAtkType.Length];
         InitializeEAtkType();
         Dead = new DeadState(SM, this);
         Move = new MoveState(SM, this);
-
         SM.Initialize(Idle);
-
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         if (rigidbody == null)
@@ -45,16 +48,15 @@ public class Player : Character
             rigidbody = GetComponent<Rigidbody>();
         }
         Level = 1;
-        this.HP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerHp() : this.HP;
         this.curHp = HP;
-        this.Level = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerLv() : this.Level;
-        this.EXP = GameManager.Instance.GetLoad ? LoadManager.Instance.LoadPlayerEXP() : this.EXP;
         AttackEnd = true;
-
+        LoadData();
         UIManager.Instance.UpdateLvGage();
         UIManager.Instance.GetExp();
         UIManager.Instance.UpdateHpGage();
     }
+
+    
 
     public override void KillTarget()
     {
