@@ -572,4 +572,7 @@ MonoBehaviour:
   AttackCooldown: 1
   SearchRange: 10
   slider: {fileID: 6142978473832107563}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 8
   Animator: {fileID: 4196301282092746630}

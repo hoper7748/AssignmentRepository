@@ -29,10 +29,11 @@ namespace CookAppsPxPAssignment.Character
         public float AttackCooldown = 1.5f;
 
         public float SearchRange = 10f;
-
         public StateMachine StateMachine;
 
         public Slider slider;
+
+        public LayerMask TargetLayer;
 
         public void GetDamaged(StateMachine Enemy)
         {

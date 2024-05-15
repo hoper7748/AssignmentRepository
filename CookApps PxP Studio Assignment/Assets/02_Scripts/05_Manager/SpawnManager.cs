@@ -16,15 +16,17 @@ namespace CookAppsPxPAssignment.Manager
                 return instance;
             }
         }
+        [SerializeField] private Transform[] _playableTransform;
 
         public GameObject Prefab;
-        private Monster[] MonsterPool;
 
         public int MaximumSpawnAmount = 5;
         public int curSpawnAmount = 0;
 
         public float SpawnTimer = 5;
 
+
+        private Monster[] _monsterPool;
         private float _curTimer;
 
         private void Awake()
@@ -35,7 +37,7 @@ namespace CookAppsPxPAssignment.Manager
                 return;
             }
             instance = this;
-            MonsterPool = new Monster[MaximumSpawnAmount];
+            _monsterPool = new Monster[MaximumSpawnAmount];
 
             SetMonsterPool();
         }
@@ -63,18 +65,25 @@ namespace CookAppsPxPAssignment.Manager
             for (int i = 0; i < MaximumSpawnAmount; i++)
             {
                 //MonsterPools.Add(Instantiate(Prefab), false);
-                MonsterPool[i] = Instantiate(Prefab.GetComponent<Monster>());
-                MonsterPool[i].gameObject.SetActive(false);
+                _monsterPool[i] = Instantiate(Prefab.GetComponent<Monster>());
+                _monsterPool[i].gameObject.SetActive(false);
+                _monsterPool[i].transform.name = $"Goblin ({i})";
             }
         }
         private void SpawnMonster()
         {
-            foreach (var monster in MonsterPool)
+            // 랜덤한 포지션에 생성
+            int rand = Random.Range(0, _playableTransform.Length);
+            Vector3 spawnPos = Random.insideUnitSphere * 5f;
+            spawnPos.z = 0;
+            foreach (var monster in _monsterPool)
             {
                 if (!monster.gameObject.activeSelf)
                 {
                     monster.SetHealthPoint();
                     monster.gameObject.SetActive(true);
+                    // 랜덤 좌표에 등장해야함.
+                    monster.transform.position = _playableTransform[rand].transform.position + spawnPos;
                     return;
                 }
             }

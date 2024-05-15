@@ -11,6 +11,7 @@ namespace CookAppsPxPAssignment.Character.Monster
         private void Awake()
         {
             _maxHealthPoint = HealthPoint;
+            
         }
         // Start is called before the first frame update
         void Start()
@@ -23,7 +24,7 @@ namespace CookAppsPxPAssignment.Character.Monster
         // Update is called once per frame
         void Update()
         {
-            //StateMachine.Update();
+            StateMachine.Update();
         }
     }
 }

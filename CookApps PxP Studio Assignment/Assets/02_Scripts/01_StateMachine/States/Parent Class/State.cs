@@ -15,7 +15,7 @@ namespace CookAppsPxPAssignment.Character.States
 
         public virtual void OnEnter()
         {
-            Debug.Log($"Enter State = {this.ToString()}");
+            //Debug.Log($"Enter State = {this.ToString()}");
         }
 
         public virtual void OnUpdate()

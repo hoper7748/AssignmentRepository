@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010529582648}
   - component: {fileID: 212000010745832340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010976902124}
   - component: {fileID: 212000012044055722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011565856400}
   - component: {fileID: 212000012096086302}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013881505214}
   - component: {fileID: 212000011735116538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010939616090}
   - component: {fileID: 212000012877011298}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013941987756}
   - component: {fileID: 212000013066927242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011004582212}
   - component: {fileID: 212000012511457428}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,8 @@ GameObject:
   - component: {fileID: 4000013306724104}
   - component: {fileID: 95000010572177686}
   - component: {fileID: 9002526749922464833}
-  m_Layer: 0
+  - component: {fileID: 7377345771751878054}
+  m_Layer: 3
   m_Name: Thief
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,8 +671,46 @@ MonoBehaviour:
   AttackCooldown: 1
   SearchRange: 10
   slider: {fileID: 0}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 64
   SkillRange: 2
   SkillCoolDown: 3
+--- !u!58 &7377345771751878054
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012663239756}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1000012730742446
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010598987170}
   - component: {fileID: 212000014126468704}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +805,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013297336500}
   - component: {fileID: 212000010614513294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +891,7 @@ GameObject:
   - component: {fileID: 6626509428529144795}
   - component: {fileID: 5669290362274693873}
   - component: {fileID: 8127063372651236269}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8783580295625854287}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +1001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6291585661749452347}
   - component: {fileID: 7444996080782624573}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1092,7 @@ GameObject:
   - component: {fileID: 2035491149319314747}
   - component: {fileID: 3502303785630656259}
   - component: {fileID: 5654755856198872652}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Health Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1193,7 @@ GameObject:
   - component: {fileID: 953734731605930098}
   - component: {fileID: 4742122343764700599}
   - component: {fileID: 8799864935538936024}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

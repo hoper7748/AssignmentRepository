@@ -9,7 +9,7 @@ namespace CookAppsPxPAssignment.Character
         public Transform Transform;
         public Character Character;
         public Animator Animator;
-
+        public SpriteRenderer SpriteRenderer;
         public States.State CurrentState;
 
         public States.IdleState IdleState;
@@ -22,7 +22,9 @@ namespace CookAppsPxPAssignment.Character
         public Vector3[] Path;
         public int targetIndex;
 
-        public bool isChasing;
+        public bool isChasing = false;
+        public bool Reversal = false;
+
 
         public static StateMachine CreateStateMachine(GameObject _playable)
         {
@@ -69,9 +71,10 @@ namespace CookAppsPxPAssignment.Character
             foreach (var col in colliders)
             {
                 newDistance = Vector3.Distance(Transform.position, col.transform.position);
-                if (Target == null || (Target != Transform && newDistance < oldDistance))
+                if ((Target == null && col.transform != Transform) || (col.transform != Transform && newDistance < oldDistance))
                 {
                     Target = col.transform.GetComponent<Character>();
+                    Debug.Log($"{Target.name}");
                     oldDistance = newDistance;
                 }
             }

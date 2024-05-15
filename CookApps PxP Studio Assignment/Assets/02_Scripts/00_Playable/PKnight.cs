@@ -20,7 +20,7 @@ namespace CookAppsPxPAssignment.Character.Playable
         // Update is called once per frame
         void Update()
         {
-            StateMachine.Update();
+            //StateMachine.Update();
         }
     }
 }

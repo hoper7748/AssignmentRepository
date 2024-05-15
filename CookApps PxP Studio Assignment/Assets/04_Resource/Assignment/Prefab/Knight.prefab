@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4000011028196368}
   - component: {fileID: 95000011895321844}
   - component: {fileID: 4558646898304484886}
-  m_Layer: 0
+  - component: {fileID: 5933207049202655204}
+  m_Layer: 3
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +76,46 @@ MonoBehaviour:
   AttackCooldown: 1.5
   SearchRange: 10
   slider: {fileID: 0}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 64
   SkillRange: 1
   SkillCoolDown: 3
+--- !u!58 &5933207049202655204
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010755293042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1000011164445256
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011100352644}
   - component: {fileID: 212000010816519800}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012139759400}
   - component: {fileID: 212000013410116670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010050103230}
   - component: {fileID: 212000010885969670}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012883391804}
   - component: {fileID: 212000012135133868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013780255908}
   - component: {fileID: 212000012764068944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Front leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011273785906}
   - component: {fileID: 212000012884130970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Back leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010376655498}
   - component: {fileID: 212000010432600294}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010764503930}
   - component: {fileID: 212000010006319442}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +806,7 @@ GameObject:
   - component: {fileID: 1509033801586823863}
   - component: {fileID: 5360336950128977657}
   - component: {fileID: 5903055341214669678}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,7 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3375366856233232828}
   - component: {fileID: 3274463689588463717}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,7 +971,7 @@ GameObject:
   - component: {fileID: 8483537597583502987}
   - component: {fileID: 6851376257827966548}
   - component: {fileID: 3409500394787561244}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Health Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159958982876476923}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1108,7 @@ GameObject:
   - component: {fileID: 3601136771556327034}
   - component: {fileID: 1549932292262301253}
   - component: {fileID: 5026941450854558641}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
