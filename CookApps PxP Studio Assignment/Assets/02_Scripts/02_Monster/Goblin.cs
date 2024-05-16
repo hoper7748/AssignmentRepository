@@ -26,5 +26,10 @@ namespace CookAppsPxPAssignment.Character.Monster
         {
             StateMachine.Update();
         }
+
+        public void nEnable()
+        {
+
+        }
     }
 }

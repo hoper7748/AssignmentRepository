@@ -17,6 +17,9 @@ namespace CookAppsPxPAssignment.Character.States
         {
             base.OnEnter();
             SetPath();
+            if(_stateMachine.Path == null)
+                SetRandomPath();
+            
             _stateMachine.SetAnimationBoolean("Walk");
         }
 
@@ -30,10 +33,20 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnUpdate()
         {
             base.OnUpdate();
+            // 대상이 도착 위치로부터 멀리 일정 거리 벗어나면 재탐색
             if (_stateMachine.Path != null && _stateMachine.targetIndex < _stateMachine.Path.Length)
             {
+                if (_stateMachine.Target != null && _stateMachine.Target.GetComponent<Character>().StateMachine.isDead)
+                {
+                    _stateMachine.Target = null;
+                    _stateMachine.ChangeState(_stateMachine.IdleState);
+                }
                 if (_stateMachine.isChasing)
                 {
+                    if (Mathf.Abs(Vector3.Distance(_stateMachine.Path[_stateMachine.Path.Length - 1], _stateMachine.Target.transform.position)) >= _stateMachine.Character.AttackRange)
+                    {
+                        SetPath();
+                    }
                     Chasing();
                 }
                 else if (!_stateMachine.isChasing)
@@ -44,7 +57,8 @@ namespace CookAppsPxPAssignment.Character.States
             else
             {
                 _stateMachine.ChangeState(_stateMachine.IdleState);
-                Debug.LogWarning($"Not Have A Path");
+                Debug.LogWarning($"Not Have A Path : {_stateMachine.Transform.name}");
+                SetRandomPath();
                 //Debug.LogWarning($"Not Have A Path / path: {_stateMachine.Path} / length: {_stateMachine.targetIndex} / {_stateMachine.Path.Length}");
                 return;
             }
@@ -58,6 +72,11 @@ namespace CookAppsPxPAssignment.Character.States
             // 타겟이 잇으면 해당 경로로 이동.
             else
                 pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, _stateMachine.Target.transform.position, _stateMachine.GetPath));
+        }
+
+        private void SetRandomPath()
+        {
+            pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, pathFinding.Grid.Instance.GetRandPoint(_stateMachine.Transform.position), _stateMachine.GetPath));
         }
 
         public void Chasing()

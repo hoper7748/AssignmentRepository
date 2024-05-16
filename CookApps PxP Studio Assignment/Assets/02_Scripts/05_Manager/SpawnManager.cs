@@ -25,7 +25,6 @@ namespace CookAppsPxPAssignment.Manager
 
         public float SpawnTimer = 5;
 
-
         private Monster[] _monsterPool;
         private float _curTimer;
 
@@ -39,7 +38,7 @@ namespace CookAppsPxPAssignment.Manager
             instance = this;
             _monsterPool = new Monster[MaximumSpawnAmount];
 
-            SetMonsterPool();
+            //SetMonsterPool();
         }
 
 
@@ -59,34 +58,19 @@ namespace CookAppsPxPAssignment.Manager
                 _curTimer = 0;
             }
         }
-
-        private void SetMonsterPool()
-        {
-            for (int i = 0; i < MaximumSpawnAmount; i++)
-            {
-                //MonsterPools.Add(Instantiate(Prefab), false);
-                _monsterPool[i] = Instantiate(Prefab.GetComponent<Monster>());
-                _monsterPool[i].gameObject.SetActive(false);
-                _monsterPool[i].transform.name = $"Goblin ({i})";
-            }
-        }
         private void SpawnMonster()
         {
-            // 랜덤한 포지션에 생성
             int rand = Random.Range(0, _playableTransform.Length);
-            Vector3 spawnPos = Random.insideUnitSphere * 5f;
+
+
+
+
+            Vector3 spawnPos = Random.insideUnitSphere * 5f + _playableTransform[rand].position ;
             spawnPos.z = 0;
-            foreach (var monster in _monsterPool)
-            {
-                if (!monster.gameObject.activeSelf)
-                {
-                    monster.SetHealthPoint();
-                    monster.gameObject.SetActive(true);
-                    // 랜덤 좌표에 등장해야함.
-                    monster.transform.position = _playableTransform[rand].transform.position + spawnPos;
-                    return;
-                }
-            }
+            Transform temp = Instantiate(Prefab).transform;
+            temp.position = spawnPos;
+            curSpawnAmount++;
         }
+
     }
 }

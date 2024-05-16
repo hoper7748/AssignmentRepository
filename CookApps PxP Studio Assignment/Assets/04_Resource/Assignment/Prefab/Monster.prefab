@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4493318747772795758}
   - component: {fileID: 4529380392761196867}
   - component: {fileID: 6220782829428816489}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7282496753645588420}
   - component: {fileID: 6603801661891126122}
   - component: {fileID: 6941931901007758505}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Health Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3320454642720732864}
   - component: {fileID: 6142978473832107563}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 5158762939998574864}
   - component: {fileID: 1638563267562234245}
   - component: {fileID: 4196301282092746630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: c1cdd26cc09ad224884556bc4d8296ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.5, y: 1.5}
@@ -363,7 +363,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4f230fa6acf87ff4aa55a06a9691101d, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 6796975643246865768}
   - component: {fileID: 5415490416765693654}
   - component: {fileID: 3234437091905872636}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2500126132796418613}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 6968412090392911344}
   - component: {fileID: 2313154018939601634}
   - component: {fileID: 7143339852267987190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,10 @@ MonoBehaviour:
   AttackDamage: 10
   AttackRange: 1
   AttackCooldown: 1
+  SkillRange: 1
+  SkillCoolDown: 3
   SearchRange: 10
+  StunTime: 0
   slider: {fileID: 6142978473832107563}
   TargetLayer:
     serializedVersion: 2

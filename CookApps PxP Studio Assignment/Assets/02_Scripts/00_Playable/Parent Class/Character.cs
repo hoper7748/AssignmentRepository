@@ -28,22 +28,54 @@ namespace CookAppsPxPAssignment.Character
         public float AttackRange = 1f;
         public float AttackCooldown = 1.5f;
 
+        public float SkillRange = 1f;
+        public float SkillCoolDown = 3f;
+
         public float SearchRange = 10f;
+
+        [HideInInspector] public float StunTime = 0;
+
+
         public StateMachine StateMachine;
 
         public Slider slider;
 
         public LayerMask TargetLayer;
 
-        public void GetDamaged(StateMachine Enemy)
+        public void GetDamaged(StateMachine _enemy, float _percent = 1f, float _stunTime = 0f)
         {
-            HealthPoint -= Enemy.Character.AttackDamage;
-            slider.value = HealthPoint / _maxHealthPoint;
             if(HealthPoint <= 0)
             {
-                StateMachine.ChangeState(StateMachine.DeadState);
-                Enemy.LostTarget();
+                return;
             }
+            HealthPoint -= _enemy.Character.AttackDamage * _percent;
+            StunTime = _stunTime;
+            slider.value = HealthPoint / _maxHealthPoint;
+
+            if (StunTime > 0 && HealthPoint > 0)
+                StateMachine.ChangeState(StateMachine.StunState);
+            else if (HealthPoint <= 0)
+            {
+                StateMachine.ChangeState(StateMachine.DeadState);
+                _enemy.LostTarget();
+
+            }
+        }
+
+        public void Healling(float _healValue)
+        {
+            HealthPoint += _healValue;
+            if (_maxHealthPoint < HealthPoint)
+                HealthPoint = _maxHealthPoint;
+
+            slider.value = HealthPoint / _maxHealthPoint;
+
+        }
+
+        public void ResetHealth()
+        {
+            HealthPoint = _maxHealthPoint;
+            slider.value = HealthPoint / _maxHealthPoint;
         }
     }
 

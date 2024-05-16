@@ -7,6 +7,7 @@ namespace CookAppsPxPAssignment.Character.States
 {
     public class SpecialAttackState : AttackState
     {
+        float _curTimer;
         public SpecialAttackState(StateMachine _stateMachine) : base(_stateMachine)
         {
 
@@ -14,7 +15,11 @@ namespace CookAppsPxPAssignment.Character.States
 
         public override void OnEnter()
         {
-            base.OnEnter();
+            //base.OnEnter();
+            _stateMachine.SetAnimationTrigger("Special");
+            //Debug.Log("Using SpecialAttack");
+            Debug.Log($"SpecialAttack / {_stateMachine.Transform.name}");
+            _curTimer = 0;
         }
 
         public override void OnExit()
@@ -25,6 +30,12 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnUpdate()
         {
             base.OnUpdate();
+
+            _curTimer += Time.deltaTime;
+            if (_curTimer > 1f)
+            {
+                _stateMachine.ChangeState(_stateMachine.IdleState);
+            }
         }
     }
 }

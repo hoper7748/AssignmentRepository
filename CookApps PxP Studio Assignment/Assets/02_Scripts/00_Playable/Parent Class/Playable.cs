@@ -6,10 +6,16 @@ namespace CookAppsPxPAssignment.Character.Playable
 {
     public class Playable : Character
     {
-        public float SkillRange = 1f;
-        public float SkillCoolDown = 3f;
+        protected Cinemachine.CinemachineBrain brainCamera;
+        public Cinemachine.CinemachineVirtualCamera virCamera;
 
 
+        public void ChangeCamera()
+        {
+            virCamera.MoveToTopOfPrioritySubqueue();
+            Debug.Log("Camera Change");
+
+        }
 
     }
 

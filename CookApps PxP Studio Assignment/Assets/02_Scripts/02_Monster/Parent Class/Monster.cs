@@ -10,6 +10,7 @@ namespace CookAppsPxPAssignment.Character.Monster
         {
             // 체력 리셋.
             HealthPoint = _maxHealthPoint;
+            slider.value = HealthPoint / _maxHealthPoint;
         }
 
     }

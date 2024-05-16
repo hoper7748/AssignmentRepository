@@ -16,12 +16,13 @@ namespace CookAppsPxPAssignment.Character.Playable
         {
             StateMachine = StateMachine.CreateStateMachine(this.gameObject);
             StateMachine.Initialize(StateMachine.IdleState);
+            StateMachine.SetSpecialAttackState(this);
         }
 
         // Update is called once per frame
         void Update()
         {
-            //StateMachine.Update();
+            StateMachine.Update();
         }
     }
 }

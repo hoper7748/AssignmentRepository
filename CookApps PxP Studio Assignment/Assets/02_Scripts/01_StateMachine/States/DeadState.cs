@@ -17,7 +17,19 @@ namespace CookAppsPxPAssignment.Character.States
         {
             base.OnEnter();
             _stateMachine.SetAnimationTrigger("Dead");
-            UnitEnable().Forget();
+            if (_stateMachine.Character is Playable.Playable)
+            {
+                _stateMachine.Collider.enabled = false;
+                UnitResurrection().Forget();
+                _stateMachine.isDead = true;
+                Manager.GameManager.Instance.DeadCheck();
+            }
+            if (_stateMachine.Character is Monster.Monster )
+            {
+                //Debug.Log("Hello world");
+                Manager.SpawnManager.Instance.curSpawnAmount--;
+                GameObject.Destroy(_stateMachine.Transform.gameObject, 1f);
+            }
         }
 
         public override void OnExit()
@@ -31,12 +43,23 @@ namespace CookAppsPxPAssignment.Character.States
             // 죽으면 아무것도 모태
 
         }
-
-        private async UniTaskVoid UnitEnable()
+        
+        private async UniTaskVoid UnitResurrection()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            // 1초 뒤 사라짐
-            _stateMachine.Transform.gameObject.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(_stateMachine.Character.SpawnTimer));
+            _stateMachine.SetAnimationTrigger("Alive");
+            Manager.GameManager.Instance.AliveCheck();
+            _stateMachine.ResetHealthPoint();
+            _stateMachine.isDead = false;
+            _stateMachine.Collider.enabled = true;
+            _stateMachine.ChangeState(_stateMachine.IdleState);
         }
+
+        //private async UniTaskVoid UnitEnable()
+        //{
+        //    await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        //    // 1초 뒤 사라짐
+        //    _stateMachine.Transform.gameObject.
+        //}
     }
 }

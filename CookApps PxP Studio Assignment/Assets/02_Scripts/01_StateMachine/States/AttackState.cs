@@ -17,10 +17,19 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnEnter()
         {
             base.OnEnter();
+            Debug.Log($"Attack / {_stateMachine.Transform.name}");
             _curTimer = 0;
             _stateMachine.Animator.SetTrigger("Attack");
-            // 타겟에게 데미지 입히기
-            _stateMachine.Target.GetDamaged(_stateMachine);
+            try
+            {
+                // 타겟에게 데미지 입히기
+                _stateMachine.Target.GetDamaged(_stateMachine);
+
+            }
+            catch
+            {
+                Debug.Log("");
+            }
            
         }
 
