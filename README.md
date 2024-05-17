@@ -33,24 +33,39 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
   }
 
   </code></pre>
-- A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 때문에 A*Algorithm을 응용하여 길찾기 기능을 제작하였으며, 인게임 AI들은 이에 기반하여 목표지점까지 찾아갑니다.
+- A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 그래서 선택한 길찾기 알고리즘이 A*Algorithm이고 이를 실현하기 위해 필드를 규격화 해 줄 Grid.cs를 만들었습니다.
   <pre><code>
-   private void SetPath()
-   {
-     // 타겟이 없으면 새로운 경로를 세팅
-     if (_stateMachine.Target == null)
-       pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, pathFinding.Grid.Instance.GetRandPoint(_stateMachine.Transform.position), _stateMachine.GetPath));
-     // 타겟이 잇으면 해당 경로로 이동.
-     else
-       pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, _stateMachine.Target.transform.position, _stateMachine.GetPath));
-   }
-    
-   public static void RequestPath(PathRequest request)
-   {
-       ThreadStart threadStart = delegate {
-                instance.pathfinding.FindPath(request, instance.FinishedProcessingPath);
-            };
-       threadStart.Invoke();
-   }
+        void CreateGrid()
+        {
+            grid = new Node[gridSizeX, gridSizeY];
+            Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.up * gridWorldSize.y / 2;
+
+            for (int x = 0; x < gridSizeX; x++)
+            {
+                for (int y = 0; y < gridSizeY; y++)
+                {
+                    Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
+                    bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+
+                    int movementPenalty = 0;
+
+                    // raycast
+
+                    Ray ray = new Ray(worldPoint + Vector3.forward * 50, Vector3.back);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit, 100, walkableMask))
+                    {
+                        walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
+                    }
+                    if (!walkable)
+                        movementPenalty += obstacleProximityPenalty;
+
+                    grid[x, y] = new Node(walkable, worldPoint, x, y, movementPenalty);
+                }
+            }
+            BlurPenaltyMap(3);
+        }
   </code></pre>
+- 전체적인 길찾기 로직의 경우 다음과 같이 구현했습니다.
+  
 - 
