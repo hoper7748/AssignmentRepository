@@ -13,6 +13,11 @@ namespace CookAppsPxPAssignment.Character.Monster
             slider.value = HealthPoint / _maxHealthPoint;
         }
 
+        public override void GetEXP(int EXP)
+        {
+            //base.GetEXP(EXP);
+            Debug.Log("Monsters can't gain experience");
+        }
     }
 
 }

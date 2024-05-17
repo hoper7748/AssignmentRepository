@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTimer: 5
-  HealthPoint: 1
+  HealthPoint: 100
   AttackDamage: 10
   AttackRange: 4
   AttackCooldown: 1

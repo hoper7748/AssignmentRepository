@@ -20,6 +20,10 @@ namespace CookAppsPxPAssignment.Character.States
             Debug.Log($"Attack / {_stateMachine.Transform.name}");
             _curTimer = 0;
             _stateMachine.Animator.SetTrigger("Attack");
+
+            Vector3 direction  = _stateMachine.Transform.position - _stateMachine.Target.transform.position;
+            _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;
+
             try
             {
                 // 타겟에게 데미지 입히기

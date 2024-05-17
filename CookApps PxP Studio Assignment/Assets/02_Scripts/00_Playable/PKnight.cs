@@ -10,6 +10,9 @@ namespace CookAppsPxPAssignment.Character.Playable
         {
             _maxHealthPoint = HealthPoint;
             virCamera.MoveToTopOfPrioritySubqueue();
+            EXPGageUpdate();
+            UpdateShopUI();
+            //CharacterBody = transform.GetChild(0);
         }
         // Start is called before the first frame update
         void Start()

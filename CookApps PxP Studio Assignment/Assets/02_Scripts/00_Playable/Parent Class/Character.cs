@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 //using Cysharp.Threading.Tasks;
 //using System;
 
@@ -22,6 +23,7 @@ namespace CookAppsPxPAssignment.Character
         public float SpawnTimer = 5f;
 
         protected float _maxHealthPoint = 0;
+
         public float HealthPoint = 400;
         public float AttackDamage = 5;
 
@@ -31,16 +33,73 @@ namespace CookAppsPxPAssignment.Character
         public float SkillRange = 1f;
         public float SkillCoolDown = 3f;
 
-        public float SearchRange = 10f;
+        public LayerMask TargetLayer;
+
+        [Header("UI"), Space(10f)]
+        public Image EXPGageImage;
+        public TextMeshProUGUI LvText;
+
+        [HideInInspector] public float SearchRange = 10f;
+
+        public Slider slider;
+        public TextMeshProUGUI HPText;
+        public TextMeshProUGUI AtkText;
+
 
         [HideInInspector] public float StunTime = 0;
 
+        protected float MaxEXP = 100;
+        protected float NowEXP = 0;
+
+        protected int _lv = 1;
 
         public StateMachine StateMachine;
 
-        public Slider slider;
+        public virtual void GetEXP(int EXP)
+        {
 
-        public LayerMask TargetLayer;
+        }
+
+        public void Initialize(float _healthPoint, float _attackDamage, float _attackRange = 1f)
+        {
+            _maxHealthPoint = _healthPoint;
+            HealthPoint = _healthPoint;
+            AttackDamage = _attackDamage;
+            AttackRange = _attackRange;
+        }
+
+        protected void LvUpdate()
+        {
+            if(LvText != null)
+            {
+                LvText.text = _lv.ToString();
+            }
+            else
+            {
+                Debug.Log("Not Have Lv");
+            }
+        }
+
+        public void UpdateShopUI()
+        {
+            if(HPText != null && AtkText != null)
+            {
+                HPText.text = $"{HealthPoint} / {_maxHealthPoint}";
+                AtkText.text = $"ATk {AttackDamage}";
+            }
+        }
+
+        protected void EXPGageUpdate()
+        {
+            if(EXPGageImage != null)
+            {
+                EXPGageImage.fillAmount = NowEXP / MaxEXP;
+            }
+            else
+            {
+                Debug.Log("Not Have Image");
+            }
+        }
 
         public void GetDamaged(StateMachine _enemy, float _percent = 1f, float _stunTime = 0f)
         {
@@ -50,16 +109,19 @@ namespace CookAppsPxPAssignment.Character
             }
             HealthPoint -= _enemy.Character.AttackDamage * _percent;
             StunTime = _stunTime;
-            slider.value = HealthPoint / _maxHealthPoint;
-
+            UpdateSlider();
             if (StunTime > 0 && HealthPoint > 0)
                 StateMachine.ChangeState(StateMachine.StunState);
             else if (HealthPoint <= 0)
             {
                 StateMachine.ChangeState(StateMachine.DeadState);
                 _enemy.LostTarget();
-
             }
+        }
+
+        public void UpdateSlider()
+        {
+            slider.value = HealthPoint / _maxHealthPoint;
         }
 
         public void Healling(float _healValue)

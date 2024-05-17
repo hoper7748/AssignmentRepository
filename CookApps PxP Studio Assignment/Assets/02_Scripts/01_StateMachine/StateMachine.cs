@@ -13,6 +13,7 @@ namespace CookAppsPxPAssignment.Character
     public class StateMachine
     {
         public Transform Transform;
+        //public Transform CharacterBody;
         public Character Character;
         public Animator Animator;
         public Collider2D Collider;

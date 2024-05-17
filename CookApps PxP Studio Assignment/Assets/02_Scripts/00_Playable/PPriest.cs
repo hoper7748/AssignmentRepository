@@ -9,6 +9,8 @@ namespace CookAppsPxPAssignment.Character.Playable
         private void Awake()
         {
             _maxHealthPoint = HealthPoint;
+            EXPGageUpdate();
+            UpdateShopUI();
         }
         // Start is called before the first frame update
         void Start()

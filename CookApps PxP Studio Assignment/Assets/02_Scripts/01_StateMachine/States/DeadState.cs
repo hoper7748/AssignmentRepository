@@ -27,9 +27,10 @@ namespace CookAppsPxPAssignment.Character.States
             if (_stateMachine.Character is Monster.Monster )
             {
                 //Debug.Log("Hello world");
-                Manager.SpawnManager.Instance.curSpawnAmount--;
+                Manager.SpawnManager.Instance.MonsterDie(_stateMachine.Transform);
                 GameObject.Destroy(_stateMachine.Transform.gameObject, 1f);
             }
+
         }
 
         public override void OnExit()

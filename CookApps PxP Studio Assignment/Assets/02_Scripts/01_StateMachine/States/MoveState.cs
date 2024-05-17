@@ -33,34 +33,41 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnUpdate()
         {
             base.OnUpdate();
-            // 대상이 도착 위치로부터 멀리 일정 거리 벗어나면 재탐색
-            if (_stateMachine.Path != null && _stateMachine.targetIndex < _stateMachine.Path.Length)
+            try
             {
-                if (_stateMachine.Target != null && _stateMachine.Target.GetComponent<Character>().StateMachine.isDead)
+                // 대상이 도착 위치로부터 멀리 일정 거리 벗어나면 재탐색
+                if (_stateMachine.Path != null && _stateMachine.targetIndex < _stateMachine.Path.Length)
                 {
-                    _stateMachine.Target = null;
-                    _stateMachine.ChangeState(_stateMachine.IdleState);
-                }
-                if (_stateMachine.isChasing)
-                {
-                    if (Mathf.Abs(Vector3.Distance(_stateMachine.Path[_stateMachine.Path.Length - 1], _stateMachine.Target.transform.position)) >= _stateMachine.Character.AttackRange)
+                    if (_stateMachine.Target != null && _stateMachine.Target.GetComponent<Character>().StateMachine.isDead)
                     {
-                        SetPath();
+                        _stateMachine.Target = null;
+                        _stateMachine.ChangeState(_stateMachine.IdleState);
                     }
-                    Chasing();
+                    if (_stateMachine.isChasing)
+                    {
+                        if (Mathf.Abs(Vector3.Distance(_stateMachine.Path[_stateMachine.Path.Length - 1], _stateMachine.Target.transform.position)) >= _stateMachine.Character.AttackRange)
+                        {
+                            SetPath();
+                        }
+                        Chasing();
+                    }
+                    else if (!_stateMachine.isChasing)
+                    {
+                        MoveingPoint();
+                    }
                 }
-                else if (!_stateMachine.isChasing)
+                else
                 {
-                    MoveingPoint();
+                    _stateMachine.ChangeState(_stateMachine.IdleState);
+                    Debug.LogWarning($"Not Have A Path : {_stateMachine.Transform.name}");
+                    SetRandomPath();
+                    //Debug.LogWarning($"Not Have A Path / path: {_stateMachine.Path} / length: {_stateMachine.targetIndex} / {_stateMachine.Path.Length}");
+                    return;
                 }
             }
-            else
+            catch
             {
                 _stateMachine.ChangeState(_stateMachine.IdleState);
-                Debug.LogWarning($"Not Have A Path : {_stateMachine.Transform.name}");
-                SetRandomPath();
-                //Debug.LogWarning($"Not Have A Path / path: {_stateMachine.Path} / length: {_stateMachine.targetIndex} / {_stateMachine.Path.Length}");
-                return;
             }
         }
 
@@ -90,10 +97,7 @@ namespace CookAppsPxPAssignment.Character.States
                 _stateMachine.ChangeState(_stateMachine.AttackState);
 
             }
-            if (FollowPath())
-            {
-
-            }
+            FollowPath();
         }
 
         private void MoveingPoint()
@@ -128,8 +132,8 @@ namespace CookAppsPxPAssignment.Character.States
             // 움직이는 방향 바라보기
             Vector3 direction = (_stateMachine.Transform.position - currentPoint).normalized;
 
-            _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  
-                
+           _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  
+
             return true;
         }
 

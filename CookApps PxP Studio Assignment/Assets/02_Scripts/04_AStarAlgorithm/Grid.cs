@@ -108,9 +108,7 @@ namespace CookAppsPxPAssignment.pathFinding
                     grid[x, y] = new Node(walkable, worldPoint, x, y, movementPenalty);
                 }
             }
-
-            // 노드를 중심으로 가중치를 부가하는 노드.
-            //BlurPenaltyMap(3);
+            BlurPenaltyMap(3);
         }
 
 
