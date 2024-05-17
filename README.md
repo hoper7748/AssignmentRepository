@@ -28,8 +28,8 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
   <pre><code>
   public void ChangeCamera()
   {
-    virCamera.MoveToTopOfPrioritySubqueue();
-    Debug.Log("Camera Change");
+     virCamera.MoveToTopOfPrioritySubqueue();
+     Debug.Log("Camera Change");
   }
 
   </code></pre>
