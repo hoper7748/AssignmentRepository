@@ -6,7 +6,6 @@ namespace CookAppsPxPAssignment.Character.Playable
 {
     public class Playable : Character
     {
-        protected Cinemachine.CinemachineBrain brainCamera;
         public Cinemachine.CinemachineVirtualCamera virCamera;
 
 

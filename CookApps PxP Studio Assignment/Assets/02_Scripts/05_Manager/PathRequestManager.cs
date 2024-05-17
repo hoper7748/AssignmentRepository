@@ -73,7 +73,6 @@ namespace CookAppsPxPAssignment.pathFinding
                 instance.pathfinding.FindPath(request, instance.FinishedProcessingPath);
             };
             threadStart.Invoke();
-
         }
 
         public void FinishedProcessingPath(PathResult result)
