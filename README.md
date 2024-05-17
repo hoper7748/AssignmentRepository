@@ -26,14 +26,12 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
 - 캐릭터 슬롯 버튼: 좌측 아래에 존재하는 버튼이며 누를 경우 해당 캐릭터를 카메라가 따라가게 되며 이는 시네머신 Virtual Camera의 MoveToTopOfPrioritySubqueue() 함수를 사용하여 구현하였습니다.
   <pre><code>
+  public void ChangeCamera()
   {
-        public void ChangeCamera()
-        {
-            virCamera.MoveToTopOfPrioritySubqueue();
-            Debug.Log("Camera Change");
-
-        }
+    virCamera.MoveToTopOfPrioritySubqueue();
+    Debug.Log("Camera Change");
   }
+
   </code></pre>
 - A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 때문에 A*Algorithm을 응용하여 길찾기 기능을 제작하였으며, 인게임 AI들은 이에 기반하여 목표지점까지 찾아갑니다.
 -   
