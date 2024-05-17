@@ -1,9 +1,9 @@
 # CookAppsTest
 
-## 프로젝트 소개
+# 프로젝트 소개
 Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
-## 개발 환경
+## 개발 버전
 - Unity 2022.3.24f1
 
 ## 프로그램 설명
