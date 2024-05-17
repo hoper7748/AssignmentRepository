@@ -34,6 +34,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
   </code></pre>
 - A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 그래서 선택한 길찾기 알고리즘이 A*Algorithm이고 이를 실현하기 위해 필드를 규격화 해 줄 Grid.cs를 만들었습니다.
+  + 필드의 크기를 지정하면 크기에 비례하여 노드를 규격화 하고 이동할 좌표의 데이터가 필요하면 해당 좌표의 정보를 가져올 수 있게 grid[x, y]배열에 기록합니다. 
   <pre><code>
         void CreateGrid()
         {
@@ -64,6 +65,81 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
                 }
             }
             BlurPenaltyMap(3);
+        }
+  </code></pre>
+  + 길을 찾을 때는 PathRequestManager의 RequestPath() 매서드를 호출하여 길을 찾습니다. 길찾기의 경우 A*기반이므로 (+1, 0) (-1, 0)등의 직선 방향은 가중치 10을, (-1, +1) (+1, -1) 등의 대각선 방향은 가중치 14를 주어 목표로 향할때의 가장 적은 가중치를 찾아 노드를 Stack에 기록하고 Pop하여 길을 반환합니다.
+  <pre><code>
+        public static void RequestPath(PathRequest request)
+        {
+            ThreadStart threadStart = delegate
+            {
+                instance.pathfinding.FindPath(request, instance.FinishedProcessingPath);
+            };
+            threadStart.Invoke();
+        }
+  </code></pre>
+  <pre><code>
+        public void FindPath(PathRequest request, Action<PathResult> callback)
+        {
+            Vector3[] wayPoint = new Vector3[0];
+            bool pathSuccess = false;
+
+            Node startNode = grid.NodeFromWorldPoint(request.pathStart);
+            Node targetNode = grid.NodeFromWorldPoint(request.pathEnd);
+
+          if (startNode.walkable && targetNode.walkable)
+            {
+                Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
+                HashSet<Node> closeSet = new HashSet<Node>();
+
+                openSet.Add(startNode);
+
+                while (openSet.Count > 0)
+                {
+                    Node currentNode = openSet.RemoveFirst();
+
+                    closeSet.Add(currentNode);
+
+                    if (currentNode == targetNode)
+                    {
+                        pathSuccess = true;
+                        break;
+                    }
+
+                    foreach (Node neighbour in grid.GetNeighbours(currentNode))
+                    {
+                        if (!neighbour.walkable || closeSet.Contains(neighbour))
+                            continue;
+                        
+                        var checkX = neighbour.gridX;
+                        var checkY = neighbour.gridY;
+
+                        if (checkX  >= 100 && checkX < 0 && checkY >= 100 && checkY < 0) continue;
+
+                        // 대각선 이동 시, 해당 이동 항향 ex) -1, -1 위치의 경우 (0, -1), (-1, 0)위치 둘 다 열려있는지 체크 해야함.
+                        int gCostDistance = GetDistance(currentNode, neighbour);
+                        int newMovementCostToNeighbour = currentNode.gCost + gCostDistance + neighbour.movementPenalty;
+                        if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                        {
+                            neighbour.gCost = newMovementCostToNeighbour;
+                            neighbour.hCost = GetDistance(neighbour, targetNode);
+                            neighbour.parent = currentNode;
+
+                            if (!openSet.Contains(neighbour))
+                                openSet.Add(neighbour);
+                            else
+                                openSet.UpdateItem(neighbour);
+                        }
+                    }
+                }
+            }
+                                                         
+            if(pathSuccess)
+            {
+                wayPoint = RetracePath(startNode, targetNode);
+                pathSuccess = wayPoint.Length > 0;
+            }
+            callback(new PathResult(wayPoint, pathSuccess, request.callback));
         }
   </code></pre>
 - 전체적인 길찾기 로직의 경우 다음과 같이 구현했습니다.
