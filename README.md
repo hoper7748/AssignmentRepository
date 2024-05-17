@@ -34,4 +34,15 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
   </code></pre>
 - A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 때문에 A*Algorithm을 응용하여 길찾기 기능을 제작하였으며, 인게임 AI들은 이에 기반하여 목표지점까지 찾아갑니다.
--   
+  <pre><code>
+ private void SetPath()
+ {
+ // 타겟이 없으면 새로운 경로를 세팅
+ if (_stateMachine.Target == null)
+     pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, pathFinding.Grid.Instance.GetRandPoint(_stateMachine.Transform.position), _stateMachine.GetPath));
+ // 타겟이 잇으면 해당 경로로 이동.
+ else
+     pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, _stateMachine.Target.transform.position, _stateMachine.GetPath));
+ }
+  </code></pre>
+- 
