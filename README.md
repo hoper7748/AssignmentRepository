@@ -143,4 +143,5 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
         }
   </code></pre>
 - 인게임의 모든 캐릭터는 Character Class를 상속받고, Playable 캐릭터와 Monster로 나눈 뒤 하위 클래스를 나눕니다.
+  
 ![Character Dialog](https://github.com/hoper7748/CookAppsTest/assets/50869470/67de987e-cca8-40ff-8759-4877315f0c57)
