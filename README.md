@@ -187,4 +187,21 @@ private bool FollowPath()
 
 - AttackState에서는 또한 로직은 비슷하게 작동합니다.
 
-
+- 상점은 Button Component를 사용하였으며, 클릭 시 연결된 매서드를 호출하도록 제작햇습니다.
+- 또한 연결된 메서드는 각 Playable Character의 AddAttackDamage 또는 AddMaxHealthPoint 매서드를 호출하며, 공격력과 최대 체력을 높여주는 역할을 합니다.
+- 로직은 다음과 같이 구현되어 있습니다.
+<pre><code>
+public void AddAttackDamage(float _value)
+{ 
+  if(Manager.GameManager.Instance.UseGold(5))
+    AttackDamage += _value;
+  UpdateShopUI();
+}
+public void AddMaxHealthPoint( float _value)
+{
+  if(Manager.GameManager.Instance.UseGold(10))
+    _maxHealthPoint += _value;
+  UpdateShopUI();
+  UpdateSlider();
+}
+</code></pre> 
