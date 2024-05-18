@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -89,7 +89,7 @@ namespace CookAppsPxPAssignment.pathFinding
                         //if (!grid[checkX + 1, neighbour.gridY].walkable || !grid[neighbour.gridX, checkY + 1].walkable) continue;
                         #endregion
 
-                        // ´ë°¢¼± ÀÌµ¿ ½Ã, ÇØ´ç ÀÌµ¿ Ç×Çâ ex) -1, -1 À§Ä¡ÀÇ °æ¿ì (0, -1), (-1, 0)À§Ä¡ µÑ ´Ù ¿­·ÁÀÖ´ÂÁö Ã¼Å© ÇØ¾ßÇÔ.
+                        // ëŒ€ê°ì„  ì´ë™ ì‹œ, í•´ë‹¹ ì´ë™ í•­í–¥ ex) -1, -1 ìœ„ì¹˜ì˜ ê²½ìš° (0, -1), (-1, 0)ìœ„ì¹˜ ë‘˜ ë‹¤ ì—´ë ¤ìˆëŠ”ì§€ ì²´í¬ í•´ì•¼í•¨.
                         int gCostDistance = GetDistance(currentNode, neighbour);
                         int newMovementCostToNeighbour = currentNode.gCost + gCostDistance + neighbour.movementPenalty;
                         if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))

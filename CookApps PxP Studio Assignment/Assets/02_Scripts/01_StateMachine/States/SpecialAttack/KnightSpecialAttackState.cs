@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace CookAppsPxPAssignment.Character.States
             base.OnEnter();
             if (_stateMachine.Target == null)
                 _stateMachine.SearchEnemy(_stateMachine.Character.SkillRange);
-            // ¸øÃ£¾Ñ³ª?
+            // ëª»ì°¾ì•—ë‚˜?
             if(_stateMachine.Target == null)
             {
                 _stateMachine.ChangeState(_stateMachine.IdleState);

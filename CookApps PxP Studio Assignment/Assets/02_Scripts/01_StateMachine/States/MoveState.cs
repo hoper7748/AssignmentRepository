@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,8 @@ namespace CookAppsPxPAssignment.Character.States
 {
     public class MoveState : State
     {
-        // ´ë»óÀÌ Á¸ÀçÇÒ °æ¿ì Ãß°İÀ»
-        // ¾Æ´Ò °æ¿ì Å½»öÀ» ÇÑ´Ù.
+        // ëŒ€ìƒì´ ì¡´ì¬í•  ê²½ìš° ì¶”ê²©ì„
+        // ì•„ë‹ ê²½ìš° íƒìƒ‰ì„ í•œë‹¤.
         public MoveState(StateMachine _stateMachine) : base(_stateMachine)
         {
             
@@ -35,7 +35,7 @@ namespace CookAppsPxPAssignment.Character.States
             base.OnUpdate();
             try
             {
-                // ´ë»óÀÌ µµÂø À§Ä¡·ÎºÎÅÍ ¸Ö¸® ÀÏÁ¤ °Å¸® ¹ş¾î³ª¸é ÀçÅ½»ö
+                // ëŒ€ìƒì´ ë„ì°© ìœ„ì¹˜ë¡œë¶€í„° ë©€ë¦¬ ì¼ì • ê±°ë¦¬ ë²—ì–´ë‚˜ë©´ ì¬íƒìƒ‰
                 if (_stateMachine.Path != null && _stateMachine.targetIndex < _stateMachine.Path.Length)
                 {
                     if (_stateMachine.Target != null && _stateMachine.Target.GetComponent<Character>().StateMachine.isDead)
@@ -73,10 +73,10 @@ namespace CookAppsPxPAssignment.Character.States
 
         private void SetPath()
         {
-            // Å¸°ÙÀÌ ¾øÀ¸¸é »õ·Î¿î °æ·Î¸¦ ¼¼ÆÃ
+            // íƒ€ê²Ÿì´ ì—†ìœ¼ë©´ ìƒˆë¡œìš´ ê²½ë¡œë¥¼ ì„¸íŒ…
             if (_stateMachine.Target == null)
                 pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, pathFinding.Grid.Instance.GetRandPoint(_stateMachine.Transform.position), _stateMachine.GetPath));
-            // Å¸°ÙÀÌ ÀÕÀ¸¸é ÇØ´ç °æ·Î·Î ÀÌµ¿.
+            // íƒ€ê²Ÿì´ ì‡ìœ¼ë©´ í•´ë‹¹ ê²½ë¡œë¡œ ì´ë™.
             else
                 pathFinding.PathRequestManager.RequestPath(new pathFinding.PathRequest(_stateMachine.Transform.position, _stateMachine.Target.transform.position, _stateMachine.GetPath));
         }
@@ -88,12 +88,12 @@ namespace CookAppsPxPAssignment.Character.States
 
         public void Chasing()
         {
-            // °ø°İ ¹üÀ§ ¾ÈÀ¸·Î µé¾î¿Ã ¶§ ±îÁö ÀÌµ¿.
+            // ê³µê²© ë²”ìœ„ ì•ˆìœ¼ë¡œ ë“¤ì–´ì˜¬ ë•Œ ê¹Œì§€ ì´ë™.
             float distance = Vector3.Distance(_stateMachine.Transform.position, _stateMachine.Target.transform.position);
             if(distance < _stateMachine.Character.AttackRange
                 || _stateMachine.targetIndex >= _stateMachine.Path?.Length)
             {
-                // °ø°İ ¹üÀ§ µé¾î¿È
+                // ê³µê²© ë²”ìœ„ ë“¤ì–´ì˜´
                 _stateMachine.ChangeState(_stateMachine.AttackState);
 
             }
@@ -104,7 +104,7 @@ namespace CookAppsPxPAssignment.Character.States
         {
             if (FollowPath())
             {
-                // ÀÌµ¿ Áß ÀûÀ» Ã£¾Ò´Â°¡¿¡ ´ëÇÑ ÀÇ¹®
+                // ì´ë™ ì¤‘ ì ì„ ì°¾ì•˜ëŠ”ê°€ì— ëŒ€í•œ ì˜ë¬¸
                 _stateMachine.SearchEnemy();
                 if (_stateMachine.Target != null)
                     _stateMachine.ChangeState(_stateMachine.IdleState);
@@ -129,7 +129,7 @@ namespace CookAppsPxPAssignment.Character.States
             }
             _stateMachine.Transform.position = Vector3.MoveTowards(_stateMachine.Transform.position, currentPoint, 2f * Time.deltaTime);
 
-            // ¿òÁ÷ÀÌ´Â ¹æÇâ ¹Ù¶óº¸±â
+            // ì›€ì§ì´ëŠ” ë°©í–¥ ë°”ë¼ë³´ê¸°
             Vector3 direction = (_stateMachine.Transform.position - currentPoint).normalized;
 
            _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  

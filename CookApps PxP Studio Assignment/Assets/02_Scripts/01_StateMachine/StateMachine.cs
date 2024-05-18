@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -107,12 +107,12 @@ namespace CookAppsPxPAssignment.Character
 
         public void SearchEnemy(float Range = 0f)
         {
-            // ÀÓ½Ã ¹İÁö¸§ 5f
+            // ì„ì‹œ ë°˜ì§€ë¦„ 5f
             Collider2D[] colliders = Physics2D.OverlapCircleAll(Transform.position, Range == 0 ? Character.SearchRange : Range, Character.TargetLayer);
             Target = null;
             float oldDistance = 0;
             float newDistance = 0;
-            // °¡Àå °¡±î¿î ÀûÀ» ÇâÇØ °ø°İ ÀÌ´Â ¸ğµç ÇÃ·¹ÀÌ¾î°¡ °°À½.
+            // ê°€ì¥ ê°€ê¹Œìš´ ì ì„ í–¥í•´ ê³µê²© ì´ëŠ” ëª¨ë“  í”Œë ˆì´ì–´ê°€ ê°™ìŒ.
             foreach (var col in colliders)
             {
                 newDistance = Vector3.Distance(Transform.position, col.transform.position);
@@ -135,7 +135,7 @@ namespace CookAppsPxPAssignment.Character
             Animator.SetBool(_booleanName, _value);
         }
 
-        // ÀûÀÌ Á×À¸¸é È£ÃâÇÏ´Â ¸Å¼­µå
+        // ì ì´ ì£½ìœ¼ë©´ í˜¸ì¶œí•˜ëŠ” ë§¤ì„œë“œ
         public void LostTarget()
         {
             Target = null;

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -230,7 +230,7 @@ namespace CookAppsPxPAssignment.pathFinding
             return neighbours;
         }
 
-        // 8¹æÇâ Å½»öÀ» ÇÏ´Â °ÍÀ¸·Î ÇÏÀÚ 
+        // 8ë°©í–¥ íƒìƒ‰ì„ í•˜ëŠ” ê²ƒìœ¼ë¡œ í•˜ì 
         //Vector3[] vec = {new Vector3(-1, 0, -1)}
 
         public Node NodeFromWorldPoint(Vector3 worldPosition)
@@ -266,7 +266,7 @@ namespace CookAppsPxPAssignment.pathFinding
             int randY = 0;
             Node centerNode = NodeFromWorldPoint(Point);
 
-            // Point·Î ºÎÅÍ X¸¸Å­ ¶³¾îÁø ±¸¿ªÀÇ À§Ä¡·Î ÀÌµ¿ÇÔ.
+            // Pointë¡œ ë¶€í„° Xë§Œí¼ ë–¨ì–´ì§„ êµ¬ì—­ì˜ ìœ„ì¹˜ë¡œ ì´ë™í•¨.
             randX = Random.Range(centerNode.gridX - 5 <= 0 ? 0 : centerNode.gridX - 5, centerNode.gridX + 5 >= gridSizeX ? gridSizeX : centerNode.gridX + 5 );
             randY = Random.Range(centerNode.gridY - 5 <= 0 ? 0 : centerNode.gridY - 5, centerNode.gridY + 5 >= gridSizeY ? gridSizeY : centerNode.gridY + 5);
             

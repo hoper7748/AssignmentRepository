@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 namespace CookAppsPxPAssignment.pathFinding
 {
 
-    // C# ±âº» Array Áß ÇÏ³ªÀÎ Listº¸´Ù A* ±æÃ£±â¸¦ Á» ´õ È¿À²ÀûÀ¸·Î ÀÛ¼ºÇÒ ¼ö ÀÖÀ½.
+    // C# ê¸°ë³¸ Array ì¤‘ í•˜ë‚˜ì¸ Listë³´ë‹¤ A* ê¸¸ì°¾ê¸°ë¥¼ ì¢€ ë” íš¨ìœ¨ì ìœ¼ë¡œ ì‘ì„±í•  ìˆ˜ ìˆìŒ.
     public class Heap<T> where T : IHeapItem<T>
     {
         T[] items;

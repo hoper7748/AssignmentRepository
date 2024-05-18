@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace CookAppsPxPAssignment.Character.States
 {
     public class ThriefSpecialAttackState : SpecialAttackState
     {
-        // ÁÖº¯ 2M ¸ğµç Àûµé¿¡°Ô ÇÇÇØ¸¦ ÀÔÈû.
+        // ì£¼ë³€ 2M ëª¨ë“  ì ë“¤ì—ê²Œ í”¼í•´ë¥¼ ì…í˜.
         public ThriefSpecialAttackState(StateMachine _stateMachine) : base (_stateMachine)
         {
 
@@ -15,7 +15,7 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnEnter()
         {
             base.OnEnter();
-            // ¹üÀ§ Å½»ö
+            // ë²”ìœ„ íƒìƒ‰
             SearchMonsters();
         }
 
@@ -33,7 +33,7 @@ namespace CookAppsPxPAssignment.Character.States
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(_stateMachine.Transform.position, _stateMachine.Character.SkillRange, _stateMachine.Character.TargetLayer);
             
-            // ¸ğµç ÀûÀ» Ã£À¸¸é µ¥¹ÌÁö¸¦ ÁØ´Ù.
+            // ëª¨ë“  ì ì„ ì°¾ìœ¼ë©´ ë°ë¯¸ì§€ë¥¼ ì¤€ë‹¤.
             foreach(var collider in colliders)
             {
                 collider.GetComponent<Character>().GetDamaged(_stateMachine);

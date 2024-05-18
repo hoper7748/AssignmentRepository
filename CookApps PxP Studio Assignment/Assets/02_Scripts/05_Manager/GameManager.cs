@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CookAppsPxPAssignment.Character;
@@ -82,7 +82,7 @@ namespace CookAppsPxPAssignment.Manager
             {
                 Playables[i].GetEXP(10);
             }
-            // ∞ÒµÂ »πµÊ. 
+            // Í≥®Îìú ÌöçÎìù. 
             GetGold(10);
         }
 
@@ -91,7 +91,7 @@ namespace CookAppsPxPAssignment.Manager
             _curDeadCount++;
             if(_maxDeadCount <= _curDeadCount)
             {
-                Debug.Log("«√∑π¿ÃæÓ ¿¸ø¯ ªÁ∏¡");
+                Debug.Log("ÌîåÎ†àÏù¥Ïñ¥ Ï†ÑÏõê ÏÇ¨Îßù");
                 Time.timeScale = 0;
                 EndGamePanel.SetActive(true);
                 StartCoroutine(RestartCoroutine());

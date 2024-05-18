@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
@@ -41,7 +41,7 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnUpdate()
         {
             base.OnUpdate();
-            // Á×À¸¸é ¾Æ¹«°Íµµ ¸ğÅÂ
+            // ì£½ìœ¼ë©´ ì•„ë¬´ê²ƒë„ ëª¨íƒœ
 
         }
         
@@ -59,7 +59,7 @@ namespace CookAppsPxPAssignment.Character.States
         //private async UniTaskVoid UnitEnable()
         //{
         //    await UniTask.Delay(TimeSpan.FromSeconds(1f));
-        //    // 1ÃÊ µÚ »ç¶óÁü
+        //    // 1ì´ˆ ë’¤ ì‚¬ë¼ì§
         //    _stateMachine.Transform.gameObject.
         //}
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace CookAppsPxPAssignment.Character.States
             base.OnEnter();
             _curTimer = 0;
             _stunTime = _stateMachine.Character.StunTime;
-            Debug.Log("±âÀý");
+            Debug.Log("ê¸°ì ˆ");
         }
 
         public override void OnExit()

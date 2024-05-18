@@ -19,10 +19,10 @@ namespace CookAppsPxPAssignment.Character.Playable
         public override void GetEXP(int EXP)
         {
             base.GetEXP(EXP);
-            // Á×Àº »óÅÂ¿¡¼­´Â °æÇèÄ¡¸¦ ¾òÁö ¸øÇÏ°Ô ÇÔ.  
+            // ì£½ì€ ìƒíƒœì—ì„œëŠ” ê²½í—˜ì¹˜ë¥¼ ì–»ì§€ ëª»í•˜ê²Œ í•¨.  
             if (StateMachine.isDead)
                 return;
-            // °ÔÀÌÁö¸¦ Ã¤¿ò.
+            // ê²Œì´ì§€ë¥¼ ì±„ì›€.
             NowEXP += EXP;
             if(NowEXP >= 100)
             {
@@ -47,8 +47,6 @@ namespace CookAppsPxPAssignment.Character.Playable
                 _maxHealthPoint += _value;
             UpdateShopUI();
             UpdateSlider();
-
-
         }
     }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ namespace CookAppsPxPAssignment.Character.States
 
             try
             {
-                // Å¸°Ù¿¡°Ô µ¥¹ÌÁö ÀÔÈ÷±â
+                // íƒ€ê²Ÿì—ê²Œ ë°ë¯¸ì§€ ì…íˆê¸°
                 _stateMachine.Target.GetDamaged(_stateMachine);
 
             }

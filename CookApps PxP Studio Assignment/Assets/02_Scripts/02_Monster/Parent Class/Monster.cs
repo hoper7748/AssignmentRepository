@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace CookAppsPxPAssignment.Character.Monster
     {
         public void SetHealthPoint()
         {
-            // Ã¼·Â ¸®¼Â.
+            // ì²´ë ¥ ë¦¬ì…‹.
             HealthPoint = _maxHealthPoint;
             slider.value = HealthPoint / _maxHealthPoint;
         }

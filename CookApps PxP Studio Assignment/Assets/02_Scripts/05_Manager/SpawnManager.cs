@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Monster = CookAppsPxPAssignment.Character.Monster.Monster;
@@ -67,10 +67,10 @@ namespace CookAppsPxPAssignment.Manager
             if(!IsBossFight)
             {
                 _curTimer += Time.deltaTime;
-                // »ı¼º·® Ã¼Å©µµ ÇØ¾ßÇÔ
+                // ìƒì„±ëŸ‰ ì²´í¬ë„ í•´ì•¼í•¨
                 if (_curTimer > SpawnTimer && curSpawnAmount < MaximumSpawnAmount)
                 {
-                    // ½ºÆù
+                    // ìŠ¤í°
                     SpawnMonster();
                     _curTimer = 0;
                 }
@@ -80,10 +80,10 @@ namespace CookAppsPxPAssignment.Manager
         public void MonsterDie(Transform monster)
         {
             curSpawnAmount--;
-            // ¸ó½ºÅÍ°¡ Á×À» ¶§¸¶´Ù Ä«¿îÅÍ°¡ Áõ°¡ÇÏ¿© ¸ñÇ¥Ä¡ ´Ş¼º ½Ã, ½ºÅ×ÀÌÁö ÀÌµ¿.
+            // ëª¬ìŠ¤í„°ê°€ ì£½ì„ ë•Œë§ˆë‹¤ ì¹´ìš´í„°ê°€ ì¦ê°€í•˜ì—¬ ëª©í‘œì¹˜ ë‹¬ì„± ì‹œ, ìŠ¤í…Œì´ì§€ ì´ë™.
             if(deadCount >= StageChangeTargetScore && !IsBossFight)
             {
-                // º¸½º ½ºÆù
+                // ë³´ìŠ¤ ìŠ¤í°
                 IsBossFight = true;
                 SpawnMonster();
             }
@@ -102,7 +102,7 @@ namespace CookAppsPxPAssignment.Manager
         
         public void NextStage()
         {
-            // Status Áõ°¡
+            // Status ì¦ê°€
             GameManager.Instance.NextStage();
             StageChangeTargetScore += 10;
 
@@ -113,7 +113,7 @@ namespace CookAppsPxPAssignment.Manager
         private void SpawnMonster()
         {
             int rand = Random.Range(0, GameManager.Instance.Playables.Count);
-            // ¸ó½ºÅÍ¸¦ ½ºÆùÇØ ÁÖ¸é¼­ ½ºÅ×ÀÌÅÍ½º¸¦ ¼¼ÆÃÇØÁÖ´Â ¹æ¹ıµµ °í·ÁÇØº¸ÀÚ.
+            // ëª¬ìŠ¤í„°ë¥¼ ìŠ¤í°í•´ ì£¼ë©´ì„œ ìŠ¤í…Œì´í„°ìŠ¤ë¥¼ ì„¸íŒ…í•´ì£¼ëŠ” ë°©ë²•ë„ ê³ ë ¤í•´ë³´ì.
 
             Vector3 spawnPos = Random.insideUnitSphere * 5f + GameManager.Instance.Playables[rand].transform.position ;
             spawnPos.z = 0;

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ namespace CookAppsPxPAssignment.Character.States
 {
     public class PriestSpecialAttackState : SpecialAttackState
     {
-        // 4¹ÌÅÍ ³»ÀÇ ¾Æ±ºÀ» È¸º¹½ÃÅ´.
+        // 4ë¯¸í„° ë‚´ì˜ ì•„êµ°ì„ íšŒë³µì‹œí‚´.
         public PriestSpecialAttackState(StateMachine _stateMachine) : base (_stateMachine)
         { 
         }

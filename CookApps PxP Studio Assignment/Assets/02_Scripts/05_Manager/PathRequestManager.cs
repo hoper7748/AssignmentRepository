@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -83,10 +83,10 @@ namespace CookAppsPxPAssignment.pathFinding
             }
         }
 
-        // ÁöÁ¤ÇÑ À§Ä¡ÀÇ ³ëµå¿¡ ÀÌµ¿ÇÒ ¼ö ÀÖ´ÂÁö Ã¼Å©
+        // ì§€ì •í•œ ìœ„ì¹˜ì˜ ë…¸ë“œì— ì´ë™í•  ìˆ˜ ìˆëŠ”ì§€ ì²´í¬
         public static bool IsMovementPoint(Vector3 point)
         {
-            // Æ÷ÀÎÆ® ±îÁö ÀÌµ¿ÀÌ °¡´ÉÇÑ°¡?.
+            // í¬ì¸íŠ¸ ê¹Œì§€ ì´ë™ì´ ê°€ëŠ¥í•œê°€?.
             return instance.pathfinding.IsMovementPoint(point) ? true : false;
         }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +7,14 @@ namespace CookAppsPxPAssignment.Character.States
 
     public class ArcherSpecialAttackState : SpecialAttackState
     {
-        // 4m¹üÀ§ ³» ´ÜÀÏ ´ë»ó¿¡°Ô °ø°İ·Â 250% ¸¸Å­ÀÇ µ¥¹ÌÁö¸¦ ÁÜ.
+        // 4më²”ìœ„ ë‚´ ë‹¨ì¼ ëŒ€ìƒì—ê²Œ ê³µê²©ë ¥ 250% ë§Œí¼ì˜ ë°ë¯¸ì§€ë¥¼ ì¤Œ.
         public ArcherSpecialAttackState(StateMachine _stateMachine) : base(_stateMachine) { }
         public override void OnEnter()
         {
             base.OnEnter();
             if (_stateMachine.Target == null)
                 _stateMachine.SearchEnemy(_stateMachine.Character.SkillRange);
-            // ¸øÃ£¾Ñ³ª?
+            // ëª»ì°¾ì•—ë‚˜?
             if(_stateMachine.Target == null)
             {
                 _stateMachine.ChangeState(_stateMachine.IdleState);

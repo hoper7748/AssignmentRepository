@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -6,7 +6,7 @@ using UnityEngine.Assertions.Must;
 
 namespace CookAppsPxPAssignment.pathFinding
 {
-    // ÀÌ°É State·Î °¡¸£±â
+    // ì´ê±¸ Stateë¡œ ê°€ë¥´ê¸°
     public class Unit : MonoBehaviour
     {
         //Thread Research;
@@ -44,13 +44,13 @@ namespace CookAppsPxPAssignment.pathFinding
         }
 
 
-        // ¸ñÇ¥¹°ÀÇ ÀÌµ¿ÀÌ °¨ÁöµÇ¸é Ã¼Å©¸¦ ÇÔ.
-        // Rect·Î Ä­ ´ç ¹üÀ§¸¦ »ı¼ºÇÏ°í »ı¼ºµÈ ¹üÀ§¸¦ Ã¼Å©ÇÏ´Â Çü½Ä
+        // ëª©í‘œë¬¼ì˜ ì´ë™ì´ ê°ì§€ë˜ë©´ ì²´í¬ë¥¼ í•¨.
+        // Rectë¡œ ì¹¸ ë‹¹ ë²”ìœ„ë¥¼ ìƒì„±í•˜ê³  ìƒì„±ëœ ë²”ìœ„ë¥¼ ì²´í¬í•˜ëŠ” í˜•ì‹
         public bool CheckTargetPosition()
         {
-            // Å¸°Ù ³ëµå
+            // íƒ€ê²Ÿ ë…¸ë“œ
             Vector3 targetPos = grid.NodeFromWorldPoint(target.position).worldPosition;
-            // ÃÖÁ¾ ¸ñÇ¥
+            // ìµœì¢… ëª©í‘œ
             Vector3 FinTarget = path[path.Length - 1];
 
             float distance = Mathf.Abs(Vector3.Distance(targetPos, FinTarget));

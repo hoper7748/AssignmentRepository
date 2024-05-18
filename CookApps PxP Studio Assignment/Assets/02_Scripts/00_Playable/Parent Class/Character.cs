@@ -12,7 +12,7 @@ namespace CookAppsPxPAssignment.Character
     {
         private void OnDrawGizmos()
         {
-            // ¼­Ä¡ ¹üÀ§ °â Å½»ö ¹üÀ§
+            // ì„œì¹˜ ë²”ìœ„ ê²¸ íƒìƒ‰ ë²”ìœ„
             Gizmos.DrawWireSphere(transform.position, SearchRange);
 
             Gizmos.color = Color.red;

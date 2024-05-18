@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ namespace CookAppsPxPAssignment.Character.States
         private float _attackCoolDown;
         //private float _changeTimer;
 
-        // ÀÏÁ¤ ½Ã°£µ¿¾È ÀûÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é ÀÌµ¿À» °¨ÇàÇÔ.
+        // ì¼ì • ì‹œê°„ë™ì•ˆ ì ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì´ë™ì„ ê°í–‰í•¨.
         public IdleState(StateMachine _stateMachine) : base (_stateMachine)
         {
             //_curTimer = 0;
@@ -41,7 +41,7 @@ namespace CookAppsPxPAssignment.Character.States
         public override void OnUpdate()
         {
             base.OnUpdate();
-            // ½Ã°£°æ°ú¿¡ µû¶ó Å½»ö
+            // ì‹œê°„ê²½ê³¼ì— ë”°ë¼ íƒìƒ‰
             _attackCoolDown -= Time.deltaTime;
             _skillCoolDown -= Time.deltaTime;
             
@@ -59,13 +59,13 @@ namespace CookAppsPxPAssignment.Character.States
 
             //_curTimer += Time.deltaTime;
             //FindTarget();
-            //if (_stateMachine.Target != null) // Å¸°ÙÀÌ Á¸ÀçÇÏ¸é ÀÌµ¿ÇÏ´Â ³ëµå
+            //if (_stateMachine.Target != null) // íƒ€ê²Ÿì´ ì¡´ì¬í•˜ë©´ ì´ë™í•˜ëŠ” ë…¸ë“œ
             //{
             //    BattleSequence();
             //    return;
             //}
 
-            //// Ãß°İÁßÀÌ ¾Æ´Ò ¶§.
+            //// ì¶”ê²©ì¤‘ì´ ì•„ë‹ ë•Œ.
             //if (!_stateMachine.isChasing && _curTimer > _changeTimer)
             //{
             //    _stateMachine.ChangeState(_stateMachine.MoveState);
@@ -80,7 +80,7 @@ namespace CookAppsPxPAssignment.Character.States
             if (!_stateMachine.isChasing)
                 _stateMachine.isChasing = true;
 
-            // Å¸ÀÌ¸Ó Ã¼Å© 0 ¹Ì¸¸ÀÌ¸é ÄğÀÌ Âù°Í.
+            // íƒ€ì´ë¨¸ ì²´í¬ 0 ë¯¸ë§Œì´ë©´ ì¿¨ì´ ì°¬ê²ƒ.
             if(_stateMachine.SpecialAttackState != null && _skillCoolDown < 0)
             {
                 SpecialAttack();
@@ -114,7 +114,7 @@ namespace CookAppsPxPAssignment.Character.States
         private void NormalAttack()
         {
             float distance = Vector3.Distance(_stateMachine.Transform.position, _stateMachine.Target.transform.position);
-            // °ø°İ ¶Ç´Â Ãß°İ ÁøÇà
+            // ê³µê²© ë˜ëŠ” ì¶”ê²© ì§„í–‰
             if (distance <= _stateMachine.Character.AttackRange)
             {
                 _stateMachine.ChangeState(_stateMachine.AttackState);
