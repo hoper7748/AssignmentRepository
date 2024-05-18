@@ -209,3 +209,22 @@ public void AddMaxHealthPoint( float _value)
   UpdateSlider();
 }
 </code></pre> 
+
+## Managers
+- GameManager와 SpawnManager를 제작하였고 GameManager의 경우 게임의 흐름을, SpawnManager의 경우 일반 / 보스 몬스터의 생성을 담당하도록 구현했습니다.
+- 이 둘은 싱글톤으로 제작되었으며 언제든 호출하여 현재 상태를 체크할 수 있도록 구현해 놓았습니다.
+- 대표적인 예시는 아래와 같습니다. 캐릭터의 죽음을 체크하고 다 모든 플레이어가 사망하였을 경우 GameOver Panel을 호출하는 기능을 하는데, Character State의 DeadState에서 호출하고 있습니다. 
+<pre><code>
+public void DeadCheck()
+{
+  _curDeadCount++;
+  if(_maxDeadCount <= _curDeadCount)
+  {
+    Debug.Log("플레이어 전원 사망");
+    Time.timeScale = 0;
+    EndGamePanel.SetActive(true);
+    StartCoroutine(RestartCoroutine());
+  }
+}
+</code></pre>
+
