@@ -26,17 +26,17 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
 ## Character Slot Button
 - 캐릭터 슬롯 버튼: 좌측 아래에 존재하는 버튼이며 누를 경우 해당 캐릭터를 카메라가 따라가게 되며 이는 시네머신 Virtual Camera의 MoveToTopOfPrioritySubqueue() 함수를 사용하여 구현하였습니다.
-  <pre><code>
+  ```C#
   public void ChangeCamera()
   {
      virCamera.MoveToTopOfPrioritySubqueue();
      Debug.Log("Camera Change");
   }
-  </code></pre>
+  ```
 ## Astar Algorithm
 - Astar 알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 그래서 선택한 길찾기 알고리즘이 Astar Algorithm이고 이를 실현하기 위해 필드를 규격화 해 줄 Grid.cs를 만들었습니다.
   + 필드의 크기를 지정하면 크기에 비례하여 노드를 규격화 하고 이동할 좌표의 데이터가 필요하면 해당 좌표의 정보를 가져올 수 있게 grid[x, y]배열에 기록해 앞으로의 탐색에 유용하게 사용할 수 있도록 하였습니다.
-  <pre><code>
+```C#
         void CreateGrid()
         {
             grid = new Node[gridSizeX, gridSizeY];
@@ -67,9 +67,9 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
             }
             BlurPenaltyMap(3);
         }
-  </code></pre>
+```
   + 길을 찾을 때는 PathRequestManager의 RequestPath() 매서드를 호출하여 길을 찾습니다. 길찾기의 경우 A*기반이므로 (+1, 0) (-1, 0)등의 직선 방향은 가중치 10을, (-1, +1) (+1, -1) 등의 대각선 방향은 가중치 14를 주어 목표로 향할때의 가장 적은 가중치를 찾아 노드를 Stack에 기록하고 Pop하여 길을 반환합니다.
-  <pre><code>
+```C#
         public static void RequestPath(PathRequest request)
         {
             ThreadStart threadStart = delegate
@@ -78,8 +78,8 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
             };
             threadStart.Invoke();
         }
-  </code></pre>
-  <pre><code>
+```
+```C#
         public void FindPath(PathRequest request, Action<PathResult> callback)
         {
             Vector3[] wayPoint = new Vector3[0];
@@ -142,7 +142,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
             }
             callback(new PathResult(wayPoint, pathSuccess, request.callback));
         }
-  </code></pre>
+```
 
 ## FSM
 - 인게임의 모든 캐릭터는 Character Class를 상속받고, Playable 캐릭터와 Monster로 나눈 뒤 하위 클래스를 나눕니다.
@@ -153,7 +153,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 - 공격과 스킬의 경우 IdleState가 진행중일 때, 별도의 쿨다운을 갖게 하였고 각 쿨다운이 0이 될 때 해당하는 State로 이동하여 로직을 진행하도록 했습니다.
 - 공격과 스킬 쿨다운이 동시에 0가 되었을 경우 스킬을 우선적으로 발동하도록 구현했습니다.
 
-<pre><code>
+```C#
   public override void OnUpdate()
   {
      base.OnUpdate();
@@ -162,7 +162,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
      _skillCoolDown -= Time.deltaTime;
     ...
   }
-</code></pre>
+```
 
 - 아래의 사진을 보면 Flip의 X축 반전을 체크했을 때, 부자연스럽게 반전되는 이슈가 있어 방향을 바꿔즐 때마다 캐릭터 자체의 Local Scale을 -1 / 1로 변환해주는 방식을 채택했습니다.
   덕분에 부드러운 방향 전환이 가능해졌습니다.
@@ -171,7 +171,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 
 - 좌측부터 Scale 1, -1 / rotate Y 0, 180 / Flip x true , false
 - MoveState에서의 목표 지점 또는 목표를 바라보는 로직은 다음과 같습니다.
-<pre><code>
+```C#
 private bool FollowPath()
 {
   Vector3 currentPoint = _stateMachine.Path[_stateMachine.targetIndex];
@@ -187,7 +187,7 @@ private bool FollowPath()
   _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  
     return true;
 }
-</code></pre>
+```
 
 - AttackState에서는 또한 로직은 비슷하게 작동합니다.
 
@@ -214,7 +214,7 @@ public void AddMaxHealthPoint( float _value)
 - GameManager와 SpawnManager를 제작하였고 GameManager의 경우 게임의 흐름을, SpawnManager의 경우 일반 / 보스 몬스터의 생성을 담당하도록 구현했습니다.
 - 이 둘은 싱글톤으로 제작되었으며 언제든 호출하여 현재 상태를 체크할 수 있도록 구현해 놓았습니다.
 - 대표적인 예시는 아래와 같습니다. 캐릭터의 죽음을 체크하고 다 모든 플레이어가 사망하였을 경우 GameOver Panel을 호출하는 기능을 하는데, Character State의 DeadState에서 호출하고 있습니다. 
-<pre><code>
+```C#
 public void DeadCheck()
 {
   _curDeadCount++;
@@ -226,5 +226,5 @@ public void DeadCheck()
     StartCoroutine(RestartCoroutine());
   }
 }
-</code></pre>
+```
 
