@@ -147,4 +147,21 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 ![Character Dialog](https://github.com/hoper7748/CookAppsTest/assets/50869470/67de987e-cca8-40ff-8759-4877315f0c57)
 
 - StateMachine으로 AI의 State를 바꿔가면서 로직을 수행합니다. 위의 길찾기 로직 또한 State 내부에서 실행됩니다.
-- 
+- 공격과 스킬의 경우 IdleState가 진행중일 때, 별도의 쿨다운을 갖게 하였고 각 쿨다운이 0이 될 때 해당하는 State로 이동하여 로직을 진행하도록 했습니다.
+- 공격과 스킬 쿨다운이 동시에 0가 되었을 경우 스킬을 우선적으로 발동하도록 구현했습니다.
+
+<pre><code>
+  public override void OnUpdate()
+  {
+     base.OnUpdate();
+     // 시간경과에 따라 탐색
+     _attackCoolDown -= Time.deltaTime;
+     _skillCoolDown -= Time.deltaTime;
+    ...
+  }
+</code></pre>
+
+- 아래의 사진을 보면 Flip의 X축 반전을 체크했을 때, 부자연스럽게 반전되는 이슈가 있어 방향을 바꿔즐 때마다 캐릭터 자체의 Local Scale을 -1 / 1로 변환해주는 방식을 채택했습니다.
+  덕분에 부드러운 방향 전환이 가능해졌습니다.
+![Untitled (4)](https://github.com/hoper7748/AssignmentRepository/assets/50869470/49b54227-e2e1-4e70-9614-22e6009d25e9)
+
