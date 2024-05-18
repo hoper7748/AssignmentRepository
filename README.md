@@ -195,7 +195,7 @@ private bool FollowPath()
 - 상점은 Button Component를 사용하였으며, 클릭 시 연결된 매서드를 호출하도록 제작햇습니다.
 - 또한 연결된 메서드는 각 Playable Character의 AddAttackDamage 또는 AddMaxHealthPoint 매서드를 호출하며, 공격력과 최대 체력을 높여주는 역할을 합니다.
 - 로직은 다음과 같이 구현되어 있습니다.
-<pre><code>
+```C#
 public void AddAttackDamage(float _value)
 { 
   if(Manager.GameManager.Instance.UseGold(5))
@@ -209,8 +209,7 @@ public void AddMaxHealthPoint( float _value)
   UpdateShopUI();
   UpdateSlider();
 }
-</code></pre> 
-
+```
 ## Managers
 - GameManager와 SpawnManager를 제작하였고 GameManager의 경우 게임의 흐름을, SpawnManager의 경우 일반 / 보스 몬스터의 생성을 담당하도록 구현했습니다.
 - 이 둘은 싱글톤으로 제작되었으며 언제든 호출하여 현재 상태를 체크할 수 있도록 구현해 놓았습니다.
