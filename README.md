@@ -20,10 +20,11 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 - 몬스터를 10마리 쓰러뜨리면 기존 몬스터보다 강력한 보스몬스터가 등장합니다.
   - 보스 몬스터가 등장하면 보스를 쓰러뜨리기 전까지 몬스터가 등장하지 않으며 보스 몬스터를 쓰러뜨리면 몬스터가 추가로 등장합니다.
 - 플레이어가 모두 사망하게 될 경우, 게임 종료 UI가 등장하며 Restart를 누르면 게임을 재시작하고 Exit를 누르면 앱이 종료됩니다. (5초 동안 조작이 없으면 Restart가 자동으로 실행됩니다.)
-- 
-## 개발된 기능
+  
+# 개발된 기능
 ※ 문서에 기재된 [필수 구현 요소]의 경우 모두 구현했으며 [가산점 항목]의 경우 스킬 이펙트 구현 항목을 제외한 모든 항목을 수행했음을 알립니다.
 
+## Character Slot Button
 - 캐릭터 슬롯 버튼: 좌측 아래에 존재하는 버튼이며 누를 경우 해당 캐릭터를 카메라가 따라가게 되며 이는 시네머신 Virtual Camera의 MoveToTopOfPrioritySubqueue() 함수를 사용하여 구현하였습니다.
   <pre><code>
   public void ChangeCamera()
@@ -31,8 +32,8 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
      virCamera.MoveToTopOfPrioritySubqueue();
      Debug.Log("Camera Change");
   }
-
   </code></pre>
+## A* Algorithm
 - A*알고리즘의 길찾기 기능: 2D 게임이라는 특징 이용해 타일맵과 같은 느낌을 주고 싶었습니다. 그래서 선택한 길찾기 알고리즘이 A*Algorithm이고 이를 실현하기 위해 필드를 규격화 해 줄 Grid.cs를 만들었습니다.
   + 필드의 크기를 지정하면 크기에 비례하여 노드를 규격화 하고 이동할 좌표의 데이터가 필요하면 해당 좌표의 정보를 가져올 수 있게 grid[x, y]배열에 기록합니다. 
   <pre><code>
@@ -142,6 +143,8 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
             callback(new PathResult(wayPoint, pathSuccess, request.callback));
         }
   </code></pre>
+
+## FSM
 - 인게임의 모든 캐릭터는 Character Class를 상속받고, Playable 캐릭터와 Monster로 나눈 뒤 하위 클래스를 나눕니다.
   
 ![Character Dialog](https://github.com/hoper7748/CookAppsTest/assets/50869470/67de987e-cca8-40ff-8759-4877315f0c57)
@@ -187,6 +190,7 @@ private bool FollowPath()
 
 - AttackState에서는 또한 로직은 비슷하게 작동합니다.
 
+## Shop Panel
 - 상점은 Button Component를 사용하였으며, 클릭 시 연결된 매서드를 호출하도록 제작햇습니다.
 - 또한 연결된 메서드는 각 Playable Character의 AddAttackDamage 또는 AddMaxHealthPoint 매서드를 호출하며, 공격력과 최대 체력을 높여주는 역할을 합니다.
 - 로직은 다음과 같이 구현되어 있습니다.
