@@ -166,7 +166,7 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 ![Untitled (4)](https://github.com/hoper7748/AssignmentRepository/assets/50869470/49b54227-e2e1-4e70-9614-22e6009d25e9)
 
 - 좌측부터 Scale 1, -1 / rotate Y 0, 180 / Flip x true , false
-
+- MoveState에서의 목표 지점 또는 목표를 바라보는 로직은 다음과 같습니다.
 <pre><code>
 private bool FollowPath()
 {
@@ -181,8 +181,10 @@ private bool FollowPath()
   _stateMachine.Transform.position = Vector3.MoveTowards(_stateMachine.Transform.position, currentPoint, 2f * Time.deltaTime);
   Vector3 direction = (_stateMachine.Transform.position - currentPoint).normalized;
   _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  
-  return true;
+    return true;
 }
 </code></pre>
+
+- AttackState에서는 또한 로직은 비슷하게 작동합니다.
 
 
