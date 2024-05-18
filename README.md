@@ -165,4 +165,23 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
   덕분에 부드러운 방향 전환이 가능해졌습니다.
 ![Untitled (4)](https://github.com/hoper7748/AssignmentRepository/assets/50869470/49b54227-e2e1-4e70-9614-22e6009d25e9)
 
-좌측부터 Scale 1, -1 / rotate Y 0, 180 / Flip x true , false
+- 좌측부터 Scale 1, -1 / rotate Y 0, 180 / Flip x true , false
+
+<pre><code>
+  
+private bool FollowPath()
+{
+  Vector3 currentPoint = _stateMachine.Path[_stateMachine.targetIndex];
+  if (Mathf.Abs(Vector2.Distance(_stateMachine.Transform.position, currentPoint)) < 0.1f)
+  {
+    _stateMachine.targetIndex++;
+    if (_stateMachine.targetIndex >= _stateMachine.Path.Length)
+      return false;
+    currentPoint = _stateMachine.Path[_stateMachine.targetIndex];
+  }
+  _stateMachine.Transform.position = Vector3.MoveTowards(_stateMachine.Transform.position, currentPoint, 2f * Time.deltaTime);
+  Vector3 direction = (_stateMachine.Transform.position - currentPoint).normalized;
+  _stateMachine.Transform.localScale = direction.x < 0 ? new Vector3(-1, 1, 1) : Vector3.one;  
+  return true;
+}
+</code></pre>
