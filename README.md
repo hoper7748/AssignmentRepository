@@ -168,7 +168,6 @@ Cook Apps PxP Studio의 과제를 수행한 프로젝트입니다.
 - 좌측부터 Scale 1, -1 / rotate Y 0, 180 / Flip x true , false
 
 <pre><code>
-  
 private bool FollowPath()
 {
   Vector3 currentPoint = _stateMachine.Path[_stateMachine.targetIndex];
